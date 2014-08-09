@@ -1,8 +1,8 @@
-datetime-picker
+Polymer datetime-picker 0.0.1
 ================
 
-See the [component page](http://shmay.github.io/datetime-picker) for more information.
+*Very* beta.  To use:
 
-## Getting Started
-
-We've put together a [guide for datetime-picker](http://www.polymer-project.org/docs/start/reusableelements.html) to help get you rolling.
+```
+<datetime-picker></datetime-picker>
+```
