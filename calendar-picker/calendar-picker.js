@@ -1,6 +1,5 @@
 (function() {
-  var DAYS_IN_MONTH, getDaysInMonth, getMonthName, months,
-    __slice = [].slice;
+  var DAYS_IN_MONTH, getDaysInMonth, getMonthName, monthNames;
 
   Array.prototype.chunk = function(chunkSize) {
     var R, i;
@@ -13,33 +12,7 @@
     return R;
   };
 
-  months = [
-    {
-      name: 'January'
-    }, {
-      name: 'February'
-    }, {
-      name: 'March'
-    }, {
-      name: 'April'
-    }, {
-      name: 'May'
-    }, {
-      name: 'June'
-    }, {
-      name: 'July'
-    }, {
-      name: 'August'
-    }, {
-      name: 'September'
-    }, {
-      name: 'October'
-    }, {
-      name: 'November'
-    }, {
-      name: 'December'
-    }
-  ];
+  monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -52,56 +25,20 @@
   };
 
   getMonthName = function(date) {
-    return months[date.getMonth()].name;
+    return monthNames[date.getMonth()];
   };
 
-  Polymer("datetime-picker", {
-    hidePicker: true,
+  Polymer("calendar-picker", {
     onCurrentMonth: true,
     observe: {
       shownDate: "shownDateChanged",
-      selectedDate: "selectedDateChanged",
-      hidePicker: "pickerHidden"
-    },
-    handleClick: function(e, fn) {
-      console.log('handleClick');
-      console.log('clickedLocally');
-      console.log(this.clickedLocally);
-      if (!this.clickedLocally) {
-        this.hidePicker = true;
-        document.removeEventListener('click', fn);
-      }
-      return this.clickedLocally = false;
-    },
-    pickerHidden: function() {
-      var fn;
-      if (!this.hidePicker) {
-        fn = (function(_this) {
-          return function() {
-            var args;
-            args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-            console.log('fn');
-            args.push(fn);
-            return _this.handleClick.apply(_this, args);
-          };
-        })(this);
-        return document.addEventListener('click', fn);
-      }
+      selectedDate: "selectedDateChanged"
     },
     ready: function() {
       this.date = new Date();
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
-      this.selectedDate = new Date();
-      return this.addEventListener('click', (function(_this) {
-        return function() {
-          console.log('yo');
-          return _this.clickedLocally = true;
-        };
-      })(this));
-    },
-    onBlur: function() {
-      return this.hidePicker = true;
+      return this.selectedDate = new Date();
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;
@@ -128,17 +65,13 @@
       this.selectedMonthName = getMonthName(this.selectedDate);
       this.selectedMonth = this.selectedDate.getMonth();
       this.selectedDay = this.selectedDate.getDate();
-      return this.selectedYear = this.selectedDate.getFullYear();
+      this.selectedYear = this.selectedDate.getFullYear();
+      return this.fireNewDateString();
     },
-    clickInput: function() {
-      var bounds, picker;
-      bounds = this.$.input.getBoundingClientRect();
-      console.log('bounds');
-      console.log(bounds);
-      picker = this.$.picker;
-      picker.style.top = (bounds.top + 30) + 'px';
-      picker.style.left = bounds.left + 'px';
-      return this.hidePicker = false;
+    fireNewDateString: function() {
+      var str;
+      str = "" + this.selectedMonthName + "-" + this.selectedDay + "-" + this.selectedYear;
+      return this.fire('new-date-str', str);
     },
     clickPrevious: function() {
       return this.goMonth(-1);
@@ -150,9 +83,6 @@
       if (!el.classList.contains('dead-date')) {
         return this.selectDay(el.getAttribute('day'));
       }
-    },
-    pickTime: function() {
-      return console.log('pickTime');
     },
     selectDay: function(day) {
       day = parseInt(day);

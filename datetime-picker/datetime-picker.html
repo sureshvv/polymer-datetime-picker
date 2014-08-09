@@ -1,0 +1,30 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../calendar-picker/calendar-picker.html">
+<link rel="import" href="../time-picker/time-picker.html">
+<link rel="import" href="../../core-input/core-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-ripple/paper-ripple.html">
+
+<polymer-element name="datetime-picker">
+  <template>
+    <link href="datetime-picker.css" rel="stylesheet">
+
+    <core-style ref='buttons'></core-style>
+
+    <core-input id='input' on-click="{{clickInput}}"
+    value="{{fullStr}}">
+    </core-input>
+
+    <div id='picker' hidden?="{{hidePicker}}">
+      <calendar-picker on-new-date-str='{{setDateStr}}' hidden?="{{!showCalendar}}">
+      </calendar-picker>
+      <time-picker on-new-time-str='{{setTimeStr}}' hidden?='{{showCalendar}}'></time-picker>
+
+      <div horizontal layout center-justified style='padding-top:10px'>
+        <div><paper-button raisedButton on-tap="{{toggleShowCalendar}}" label="{{showCalendar ? 'time picker' : 'date picker'}}" tabindex='0'></paper-button></div>
+      </div>
+    </div>
+  </template>
+
+  <script type="text/javascript" src='datetime-picker.js'></script>
+</polymer-element>

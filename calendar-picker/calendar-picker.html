@@ -1,0 +1,44 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../core-input/core-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-ripple/paper-ripple.html">
+
+<polymer-element name="calendar-picker" attributes="selectedDate">
+  <template>
+    <link href="calendar-picker.css" rel="stylesheet">
+
+    <div layout horizontal justified>
+      <div><paper-button raisedButton on-tap="{{clickPrevious}}" tabindex='0'
+        disabled?="{{onCurrentMonth}}">prev</paper-button>
+      </div>
+      <div layout vertical center-justified>{{shownMonthName}} {{shownYear}}</div>
+      <div><paper-button raisedButton on-tap="{{clickNext}}">next</paper-button></div>
+    </div>
+    <table>
+      <thead>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </thead>
+      <tbody>
+        <template repeat="{{week,index in weeks}}">
+          <tr>
+            <template repeat="{{day,index in week}}">
+              <td on-tap="{{clickDay}}" day="{{day}}"
+                class="{{day <= 0 ? 'dead-date' : ''}} {{day == selectedDay && shownMonth === selectedMonth ? 'selected' : ''}}
+                {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }}">
+                <span hidden?="{{day <= 0}}">{{day}}</span>
+              </td>
+            </template>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </template>
+
+  <script type="text/javascript" src='calendar-picker.js'></script>
+</polymer-element>

@@ -1,0 +1,16 @@
+/* line 1, time-picker.scss */
+:host {
+  padding: 10px;
+}
+
+/* line 4, time-picker.scss */
+paper-slider {
+  width: 300px;
+}
+
+/* line 8, time-picker.scss */
+section {
+  max-width: 1000px;
+  padding: 20px 0;
+  background-color: #f0f0f0;
+}

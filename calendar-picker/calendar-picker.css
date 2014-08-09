@@ -1,0 +1,41 @@
+/* line 5, calendar-picker.scss */
+paper-button {
+  font-size: 12px;
+}
+
+/* line 9, calendar-picker.scss */
+core-input {
+  border: 1px dotted black;
+  padding: 3px;
+}
+
+/* line 14, calendar-picker.scss */
+td {
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+/* line 21, calendar-picker.scss */
+td:hover {
+  background-color: #03a9f4;
+  color: white;
+}
+/* line 26, calendar-picker.scss */
+td.dead-date {
+  cursor: default;
+  color: gray;
+}
+/* line 29, calendar-picker.scss */
+td.dead-date:hover {
+  background-color: white;
+  color: gray;
+}
+/* line 35, calendar-picker.scss */
+td.selected {
+  background-color: #03a9f4;
+  cursor: default;
+  color: white;
+}

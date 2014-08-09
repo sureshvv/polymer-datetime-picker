@@ -7,7 +7,7 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    src: ['*.scss'],
+                    src: ['{,*/}*.scss'],
                     ext: '.css'
                 }]
             }
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
           dist: {
             files: [{
               expand: true,
-              src: '*.{coffee,litcoffee,coffee.md}',
+              src: '{,*/}*.{coffee,litcoffee,coffee.md}',
               ext: '.js'
             }]
          }
@@ -29,11 +29,11 @@ module.exports = function(grunt) {
 
         watch: {
           compass: {
-            files: ['*.scss'],
+            files: ['{,*/}*.scss'],
             tasks: ['compass']
           },
           coffee: {
-              files: ['*.{coffee,litcoffee,coffee.md}'],
+              files: ['{,*/}*.{coffee,litcoffee,coffee.md}'],
               tasks: ['coffee:dist']
           }
         },
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         vulcanize: {
           default: {
             options: {
-              // Task-specific options go here.
+              inline: true
             },
             files: {
               'index.html': 'demo2.html'
@@ -64,13 +64,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('serve', function (target) {
-      grunt.task.run([
-        'connect:server',
-        'watch'
-      ]);
-    });
-    
     grunt.loadNpmTasks('grunt-vulcanize');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-coffee');
