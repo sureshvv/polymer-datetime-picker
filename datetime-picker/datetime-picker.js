@@ -63,13 +63,12 @@
       return this.fullStr = str;
     },
     clickInput: function() {
-      var bounds, picker;
-      bounds = this.$.input.getBoundingClientRect();
-      console.log('bounds');
-      console.log(bounds);
+      var left, picker, top;
+      top = this.offsetTop;
+      left = this.offsetLeft;
       picker = this.$.picker;
-      picker.style.top = (bounds.top + 30) + 'px';
-      picker.style.left = bounds.left + 'px';
+      picker.style.top = (top + 28) + 'px';
+      picker.style.left = left + 'px';
       return this.hidePicker = false;
     },
     toggleShowCalendar: function() {

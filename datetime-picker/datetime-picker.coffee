@@ -47,15 +47,13 @@ Polymer "datetime-picker",
     @fullStr = str
 
   clickInput: ->
-    bounds = @$.input.getBoundingClientRect()
-
-    console.log 'bounds'
-    console.log bounds
+    top = @offsetTop
+    left = @offsetLeft
 
     picker = @$.picker
 
-    picker.style.top = (bounds.top + 30) + 'px'
-    picker.style.left = bounds.left + 'px'
+    picker.style.top = (top + 28) + 'px'
+    picker.style.left = left + 'px'
 
     @hidePicker = false
 
