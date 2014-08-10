@@ -11,11 +11,11 @@
 
   getHours = function(hours) {
     if (hours <= 12) {
-      hours;
       if (hours < 1) {
-        12;
+        return 12;
+      } else {
+        return hours;
       }
-      return end;
     } else {
       return hours - 12;
     }

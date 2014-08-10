@@ -2,16 +2,14 @@ getAmPm = (hours) -> if hours <= 12 then 'AM' else 'PM'
 
 getHours = (hours) ->
   if hours <= 12
-    hours
     if hours < 1
       12
-    end
+    else
+      hours
   else
     hours - 12
 
-
 pad = (num) -> if num < 10 then "0" + num else num
-
 
 Polymer "time-picker", 
   observe: {
