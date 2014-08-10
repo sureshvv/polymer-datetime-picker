@@ -10,7 +10,5 @@ paper-slider {
 
 /* line 8, time-picker.scss */
 section {
-  max-width: 1000px;
   padding: 20px 0;
-  background-color: #f0f0f0;
 }
