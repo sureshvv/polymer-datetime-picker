@@ -3,31 +3,33 @@ Polymer "datetime-picker",
   hidePicker: true
 
   observe: {
-    hidePicker: "pickerShownOrHidden"
     selectedDate: "selectedDateChanged"
+    hidePicker: "pickerShownOrHidden"
     timeString: 'setFullStr'
     dateString: 'setFullStr'
   }
 
-  handleClick: (e, fn) ->
-    if not @clickedLocally
-      @hidePicker = true
-      document.removeEventListener('click', fn)
-
-    @clickedLocally = false
-    
   pickerShownOrHidden: ->
-    if not @hidePicker
-      fn = (args...) =>
-        args.push fn
-        @handleClick.apply(@, args)
+    if @hidePicker
+      @removeListeners()
+    else
+      @addListeners()
 
-      document.addEventListener 'click', fn
+  addListeners: ->
+    @docClickListener = =>
+      if not @clickedLocally
+        @hidePicker = true
 
-  ready: ->
-    @addEventListener 'click', => console.log('yo'); @clickedLocally = true
+      @clickedLocally = false
 
-  onBlur: -> @hidePicker = true
+    @localClickListener = => @clickedLocally = true
+
+    document.addEventListener 'click', @docClickListener
+    @addEventListener 'click', @localClickListener
+
+  removeListeners: ->
+    @removeEventListener 'click', @localClickListener
+    document.removeEventListener 'click', @docClickListener
 
   selectedDateChanged: ->
     @selectedMonthName = @$.calendar.getMonthName(@selectedDate)
@@ -39,23 +41,29 @@ Polymer "datetime-picker",
   setTimeStr: (e, str, sender) -> @timeString = str
 
   setFullStr: ->
-    if @timeString
-      str = @dateString + " " + @timeString
+    if @dateString
+      if @timeString
+        str = @dateString + " " + @timeString
+      else
+        str = @dateString
     else
-      str = @dateString
+      str = ""
 
     @fullStr = str
 
   clickInput: ->
-    top = @offsetTop
-    left = @offsetLeft
+    if @hidePicker
+      top = @offsetTop
+      left = @offsetLeft
 
-    picker = @$.picker
+      picker = @$.picker
 
-    picker.style.top = (top + 28) + 'px'
-    picker.style.left = left + 'px'
+      num = if bowser.webkit then 55 else 30
 
-    @hidePicker = false
+      picker.style.top = (top + num) + 'px'
+      picker.style.left = left + 'px'
+
+      @hidePicker = false
 
   toggleShowCalendar: ->
     @showCalendar = !@showCalendar

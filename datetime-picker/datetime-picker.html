@@ -5,15 +5,12 @@
 <link rel="import" href="../../paper-button/paper-button.html">
 <link rel="import" href="../../paper-ripple/paper-ripple.html">
 
-<polymer-element name="datetime-picker">
+<polymer-element name="datetime-picker" attributes='label'>
   <template>
     <link href="datetime-picker.css" rel="stylesheet">
 
-    <core-style ref='buttons'></core-style>
-
-    <core-input id='input' on-click="{{clickInput}}"
-    value="{{fullStr}}">
-    </core-input>
+    <paper-input id='input' floatinglabel on-click="{{clickInput}}" label='{{label}}' value="{{fullStr}}">
+    </paper-input>
 
     <div id='picker' hidden?="{{hidePicker}}">
       <calendar-picker on-new-date-str='{{setDateStr}}' hidden?="{{!showCalendar}}">
@@ -26,5 +23,6 @@
     </div>
   </template>
 
+  <script type="text/javascript" src='../../bowser/bowser.js'></script>
   <script type="text/javascript" src='datetime-picker.js'></script>
 </polymer-element>

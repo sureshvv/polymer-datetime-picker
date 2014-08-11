@@ -30,15 +30,11 @@
 
   Polymer("calendar-picker", {
     onCurrentMonth: true,
-    observe: {
-      shownDate: "shownDateChanged",
-      selectedDate: "selectedDateChanged"
-    },
     ready: function() {
       this.date = new Date();
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
-      return this.selectedDate = new Date();
+      return this.shownDateChanged();
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;
@@ -87,17 +83,17 @@
     selectDay: function(day) {
       day = parseInt(day);
       this.selectedDay = day;
+      if (!this.selectedDate) {
+        this.selectedDate = new Date(this.shownDate.getTime());
+      }
       this.selectedDate.setDate(day);
       this.selectedDate.setMonth(this.shownDate.getMonth());
       this.selectedDate.setFullYear(this.shownDate.getFullYear());
-      return this.changeDate('selectedDate');
+      return this.selectedDateChanged();
     },
     goMonth: function(dir) {
       this.shownDate.setMonth(this.shownDate.getMonth() + dir);
-      return this.changeDate('shownDate');
-    },
-    changeDate: function(dateStr) {
-      return this[dateStr] = new Date(this[dateStr].getTime());
+      return this.shownDateChanged();
     }
   });
 

@@ -1,46 +1,40 @@
 (function() {
-  var __slice = [].slice;
-
   Polymer("datetime-picker", {
     showCalendar: true,
     hidePicker: true,
     observe: {
-      hidePicker: "pickerShownOrHidden",
       selectedDate: "selectedDateChanged",
+      hidePicker: "pickerShownOrHidden",
       timeString: 'setFullStr',
       dateString: 'setFullStr'
     },
-    handleClick: function(e, fn) {
-      if (!this.clickedLocally) {
-        this.hidePicker = true;
-        document.removeEventListener('click', fn);
-      }
-      return this.clickedLocally = false;
-    },
     pickerShownOrHidden: function() {
-      var fn;
-      if (!this.hidePicker) {
-        fn = (function(_this) {
-          return function() {
-            var args;
-            args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-            args.push(fn);
-            return _this.handleClick.apply(_this, args);
-          };
-        })(this);
-        return document.addEventListener('click', fn);
+      if (this.hidePicker) {
+        return this.removeListeners();
+      } else {
+        return this.addListeners();
       }
     },
-    ready: function() {
-      return this.addEventListener('click', (function(_this) {
+    addListeners: function() {
+      this.docClickListener = (function(_this) {
         return function() {
-          console.log('yo');
+          if (!_this.clickedLocally) {
+            _this.hidePicker = true;
+          }
+          return _this.clickedLocally = false;
+        };
+      })(this);
+      this.localClickListener = (function(_this) {
+        return function() {
           return _this.clickedLocally = true;
         };
-      })(this));
+      })(this);
+      document.addEventListener('click', this.docClickListener);
+      return this.addEventListener('click', this.localClickListener);
     },
-    onBlur: function() {
-      return this.hidePicker = true;
+    removeListeners: function() {
+      this.removeEventListener('click', this.localClickListener);
+      return document.removeEventListener('click', this.docClickListener);
     },
     selectedDateChanged: function() {
       this.selectedMonthName = this.$.calendar.getMonthName(this.selectedDate);
@@ -55,21 +49,28 @@
     },
     setFullStr: function() {
       var str;
-      if (this.timeString) {
-        str = this.dateString + " " + this.timeString;
+      if (this.dateString) {
+        if (this.timeString) {
+          str = this.dateString + " " + this.timeString;
+        } else {
+          str = this.dateString;
+        }
       } else {
-        str = this.dateString;
+        str = "";
       }
       return this.fullStr = str;
     },
     clickInput: function() {
-      var left, picker, top;
-      top = this.offsetTop;
-      left = this.offsetLeft;
-      picker = this.$.picker;
-      picker.style.top = (top + 28) + 'px';
-      picker.style.left = left + 'px';
-      return this.hidePicker = false;
+      var left, num, picker, top;
+      if (this.hidePicker) {
+        top = this.offsetTop;
+        left = this.offsetLeft;
+        picker = this.$.picker;
+        num = bowser.webkit ? 55 : 30;
+        picker.style.top = (top + num) + 'px';
+        picker.style.left = left + 'px';
+        return this.hidePicker = false;
+      }
     },
     toggleShowCalendar: function() {
       return this.showCalendar = !this.showCalendar;

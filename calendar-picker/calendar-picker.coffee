@@ -20,17 +20,12 @@ getMonthName = (date) -> monthNames[date.getMonth()]
 Polymer "calendar-picker",
   onCurrentMonth: true
 
-  observe: {
-    shownDate: "shownDateChanged"
-    selectedDate: "selectedDateChanged"
-  }
-    
   ready: ->
     @date =  new Date()
     @currentDay = @date.getDate()
 
     @shownDate = new Date()
-    @selectedDate = new Date()
+    @shownDateChanged()
 
   adjustDays: ->
     @shownDate.setDate(1)
@@ -75,16 +70,17 @@ Polymer "calendar-picker",
   selectDay: (day) ->
     day = parseInt(day)
     @selectedDay = day
+
+    if !@selectedDate
+      @selectedDate = new Date(@shownDate.getTime())
+
     @selectedDate.setDate(day)
+
     @selectedDate.setMonth(@shownDate.getMonth())
     @selectedDate.setFullYear(@shownDate.getFullYear())
-    @changeDate 'selectedDate'
+
+    @selectedDateChanged()
 
   goMonth: (dir) ->
     @shownDate.setMonth @shownDate.getMonth() + dir
-    @changeDate 'shownDate'
-
-  changeDate: (dateStr) ->
-    @[dateStr] = new Date(@[dateStr].getTime())
-
-
+    @shownDateChanged()
