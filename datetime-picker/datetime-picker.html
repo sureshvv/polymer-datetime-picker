@@ -9,7 +9,7 @@
   <template>
     <link href="datetime-picker.css" rel="stylesheet">
 
-    <paper-input id='input' floatinglabel on-click="{{clickInput}}" label='{{label}}' value="{{fullStr}}">
+    <paper-input id='input' floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
     </paper-input>
 
     <div id='picker' hidden?="{{hidePicker}}">

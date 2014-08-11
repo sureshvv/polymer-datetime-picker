@@ -18,10 +18,6 @@ td {
   text-align: center;
   cursor: pointer;
 
-  &:hover {
-    background-color: $tdbg;
-    color: white;
-  }
 
   &.dead-date {
     cursor: default;
@@ -32,9 +28,19 @@ td {
     }
   }
 
+  &.current-day {
+    background-color: rgb(225, 225, 225);
+  }
+
+  &:hover {
+    background-color: $tdbg;
+    color: white;
+  }
+
   &.selected {
     background-color: $tdbg;
     cursor: default;
     color:white;
   }
+
 }

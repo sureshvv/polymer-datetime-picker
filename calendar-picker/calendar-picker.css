@@ -18,22 +18,26 @@ td {
   text-align: center;
   cursor: pointer;
 }
-/* line 21, calendar-picker.scss */
-td:hover {
-  background-color: #03a9f4;
-  color: white;
-}
-/* line 26, calendar-picker.scss */
+/* line 22, calendar-picker.scss */
 td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 29, calendar-picker.scss */
+/* line 25, calendar-picker.scss */
 td.dead-date:hover {
   background-color: white;
   color: gray;
 }
+/* line 31, calendar-picker.scss */
+td.current-day {
+  background-color: #e1e1e1;
+}
 /* line 35, calendar-picker.scss */
+td:hover {
+  background-color: #03a9f4;
+  color: white;
+}
+/* line 40, calendar-picker.scss */
 td.selected {
   background-color: #03a9f4;
   cursor: default;

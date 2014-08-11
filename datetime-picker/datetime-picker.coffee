@@ -51,7 +51,9 @@ Polymer "datetime-picker",
 
     @fullStr = str
 
-  clickInput: ->
+  selectInput: ->
+    console.log '@hidePicker'
+    console.log @hidePicker
     if @hidePicker
       top = @offsetTop
       left = @offsetLeft

@@ -30,7 +30,7 @@
             <template repeat="{{day,index in week}}">
               <td on-tap="{{clickDay}}" day="{{day}}"
                 class="{{day <= 0 ? 'dead-date' : ''}} {{day == selectedDay && shownMonth === selectedMonth ? 'selected' : ''}}
-                {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }}">
+                {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }} {{onCurrentMonth && day == currentDay ? 'current-day' : ''}}">
                 <span hidden?="{{day <= 0}}">{{day}}</span>
               </td>
             </template>

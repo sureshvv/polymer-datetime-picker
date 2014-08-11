@@ -60,8 +60,10 @@
       }
       return this.fullStr = str;
     },
-    clickInput: function() {
+    selectInput: function() {
       var left, num, picker, top;
+      console.log('@hidePicker');
+      console.log(this.hidePicker);
       if (this.hidePicker) {
         top = this.offsetTop;
         left = this.offsetLeft;
