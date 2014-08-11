@@ -24,5 +24,5 @@ Compiling scss/coffee:
 
 To vulcanize for demo purposes:
 
-    vulcanize -o index.html demo.html --inline
+    vulcanize -o gh-pages/index.html demo.html --inline
 
