@@ -4558,7 +4558,7 @@ section {
       
       <div center="" horizontal="" layout="">
         <div>Minutes</div>
-        <paper-slider id="minutes" on-trackx="{{minChanged}}" max="60" min="1">
+        <paper-slider id="minutes" on-trackx="{{minChanged}}" max="59" min="1">
         </paper-slider>
       </div>
 
@@ -4679,8 +4679,7 @@ core-input {
     </paper-input>
 
     <div id="picker" hidden?="{{hidePicker}}">
-      <calendar-picker on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}">
-      </calendar-picker>
+      <calendar-picker on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}"></calendar-picker>
       <time-picker on-new-time-str="{{setTimeStr}}" hidden?="{{showCalendar}}"></time-picker>
 
       <div horizontal="" layout="" center-justified="" style="padding-top:10px">
