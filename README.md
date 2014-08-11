@@ -26,3 +26,6 @@ To vulcanize for demo purposes:
 
     vulcanize -o gh-pages/index.html demo.html --inline
 
+Deploy to GitHub Pages
+    
+    sh deploy-gh-pages.sh
