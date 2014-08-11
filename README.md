@@ -4,7 +4,7 @@ Polymer datetime-picker 0.0.1
 as of this moment, it's in *double secret* beta.  To use:
 
 ```
-<datetime-picker></datetime-picker>
+<datetime-picker label='my datetime picker'></datetime-picker>
 ```
 
 revel in the demo:
@@ -24,5 +24,5 @@ Compiling scss/coffee:
 
 To vulcanize for demo purposes:
 
-    vulcanize -o index.html demo2.html --inline
+    vulcanize -o index.html demo.html --inline
 
