@@ -2595,22 +2595,26 @@ td {
   text-align: center;
   cursor: pointer;
 }
-/* line 21, calendar-picker.scss */
-td:hover {
-  background-color: #03a9f4;
-  color: white;
-}
-/* line 26, calendar-picker.scss */
+/* line 22, calendar-picker.scss */
 td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 29, calendar-picker.scss */
+/* line 25, calendar-picker.scss */
 td.dead-date:hover {
   background-color: white;
   color: gray;
 }
+/* line 31, calendar-picker.scss */
+td.current-day {
+  background-color: #e1e1e1;
+}
 /* line 35, calendar-picker.scss */
+td:hover {
+  background-color: #03a9f4;
+  color: white;
+}
+/* line 40, calendar-picker.scss */
 td.selected {
   background-color: #03a9f4;
   cursor: default;
@@ -2639,7 +2643,7 @@ td.selected {
           <tr>
             <template repeat="{{day,index in week}}">
               <td on-tap="{{clickDay}}" day="{{day}}" class="{{day &lt;= 0 ? &apos;dead-date&apos; : &apos;&apos;}} {{day == selectedDay &amp;&amp; shownMonth === selectedMonth ? &apos;selected&apos; : &apos;&apos;}}
-                {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }}">
+                {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }} {{onCurrentMonth &amp;&amp; day == currentDay ? &apos;current-day&apos; : &apos;&apos;}}">
                 <span hidden?="{{day &lt;= 0}}">{{day}}</span>
               </td>
             </template>
@@ -4671,7 +4675,7 @@ core-input {
 }
 </style>
 
-    <paper-input id="input" floatinglabel="" on-click="{{clickInput}}" label="{{label}}" value="{{fullStr}}">
+    <paper-input id="input" floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
     </paper-input>
 
     <div id="picker" hidden?="{{hidePicker}}">
@@ -4987,8 +4991,10 @@ core-input {
       }
       return this.fullStr = str;
     },
-    clickInput: function() {
+    selectInput: function() {
       var left, num, picker, top;
+      console.log('@hidePicker');
+      console.log(this.hidePicker);
       if (this.hidePicker) {
         top = this.offsetTop;
         left = this.offsetLeft;
