@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../../platform/platform.js"></script>
+  <script src="../platform/platform.js"></script>
   <div hidden><!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -291,7 +291,7 @@ html /deep/ [segment], html /deep/ segment {
 
 </style>
 
-<script src="../../polymer/polymer.js"></script>
+<script src="../polymer/polymer.js"></script>
 <!--<link rel="import" href="../polymer-dev/polymer.html">--> 
 
 <!--
@@ -384,7 +384,7 @@ Fired when the inputValue of this text input changes and passes validation.
 -->
 
 
-<polymer-element name="core-input" on-focus="{{focusAction}}" assetpath="../../core-input/">
+<polymer-element name="core-input" on-focus="{{focusAction}}" assetpath="../core-input/">
 
   <template>
 
@@ -974,7 +974,7 @@ Example:
 
 
 
-<polymer-element name="core-meta" attributes="label type" hidden assetpath="../../core-meta/">
+<polymer-element name="core-meta" attributes="label type" hidden assetpath="../core-meta/">
 <script>
 
   (function() {
@@ -1062,7 +1062,7 @@ Example:
 </polymer-element>
 
 
-<polymer-element name="core-iconset" extends="core-meta" attributes="src width icons iconSize" assetpath="../../core-iconset/">
+<polymer-element name="core-iconset" extends="core-meta" attributes="src width icons iconSize" assetpath="../core-iconset/">
   
   <script>
   
@@ -1260,7 +1260,7 @@ html /deep/ core-icon {
   width: 24px;
 }</style>
 
-<polymer-element name="core-icon" attributes="src icon alt" assetpath="../../core-icon/">
+<polymer-element name="core-icon" attributes="src icon alt" assetpath="../core-icon/">
 <script>
 (function() {
   
@@ -1425,7 +1425,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-<polymer-element name="paper-focusable" attributes="active focused disabled isToggle" tabindex="0" on-down="{{downAction}}" on-up="{{upAction}}" on-focus="{{focusAction}}" on-blur="{{blurAction}}" on-contextmenu="{{contextMenuAction}}" assetpath="../../paper-focusable/">
+<polymer-element name="paper-focusable" attributes="active focused disabled isToggle" tabindex="0" on-down="{{downAction}}" on-up="{{upAction}}" on-focus="{{focusAction}}" on-blur="{{blurAction}}" on-contextmenu="{{contextMenuAction}}" assetpath="../paper-focusable/">
 
   <template>
     <style>
@@ -1610,7 +1610,7 @@ Apply `circle` class to make the rippling effect within a circle.
 
 
 
-<polymer-element name="paper-ripple" attributes="initialOpacity opacityDecayVelocity" assetpath="../../paper-ripple/">
+<polymer-element name="paper-ripple" attributes="initialOpacity opacityDecayVelocity" assetpath="../paper-ripple/">
 <template>
 
   <style>
@@ -2032,7 +2032,7 @@ root if there is one. This implies:
 
 
 
-<polymer-element name="paper-shadow" assetpath="../../paper-shadow/">
+<polymer-element name="paper-shadow" assetpath="../paper-shadow/">
 
   <template>
 
@@ -2272,7 +2272,7 @@ root if there is one. This implies:
 </polymer-element>
 
 
-<polymer-element name="paper-button" extends="paper-focusable" attributes="label raisedButton iconSrc icon" role="button" assetpath="../../paper-button/">
+<polymer-element name="paper-button" extends="paper-focusable" attributes="label raisedButton iconSrc icon" role="button" assetpath="../paper-button/">
 
   <template>
 
@@ -2544,7 +2544,7 @@ root if there is one. This implies:
 
 
 
-<polymer-element name="calendar-picker" attributes="selectedDate" assetpath="../calendar-picker/">
+<polymer-element name="calendar-picker" attributes="selectedDate" assetpath="calendar-picker/">
   <template>
     <style>/* line 5, calendar-picker.scss */
 paper-button {
@@ -2621,7 +2621,7 @@ div.td.selected {
     </table>
   </template>
 
-  <script type="text/javascript" src="../calendar-picker/calendar-picker.js"></script>
+  <script type="text/javascript" src="calendar-picker/calendar-picker.js"></script>
 </polymer-element>
 
 
@@ -2769,7 +2769,7 @@ One can build a progress bar using `core-range` like this:
 
 
 
-<polymer-element name="core-range" attributes="value min max step ratio" assetpath="../../core-range/">
+<polymer-element name="core-range" attributes="value min max step ratio" assetpath="../core-range/">
 <script>
 
   Polymer('core-range', {
@@ -2852,7 +2852,7 @@ One can build a progress bar using `core-range` like this:
 </polymer-element>
 
 
-<polymer-element name="paper-progress" extends="core-range" attributes="secondaryProgress" assetpath="../../paper-progress/">
+<polymer-element name="paper-progress" extends="core-range" attributes="secondaryProgress" assetpath="../paper-progress/">
 
   <template>
   
@@ -3063,7 +3063,7 @@ Putting this together:
 
 
 
-<polymer-element name="core-style" hidden assetpath="../../core-style/">
+<polymer-element name="core-style" hidden assetpath="../core-style/">
 <script>
 (function() {
 
@@ -3376,7 +3376,7 @@ Polymer('core-style', {
 
 </core-style>
 
-<polymer-element name="paper-input" extends="core-input" attributes="label floatingLabel maxRows error" on-down="{{downAction}}" on-up="{{upAction}}" assetpath="../../paper-input/">
+<polymer-element name="paper-input" extends="core-input" attributes="label floatingLabel maxRows error" on-down="{{downAction}}" on-up="{{upAction}}" assetpath="../paper-input/">
 
   <template>
 
@@ -3490,7 +3490,7 @@ Polymer('core-style', {
 }
 
 #errorIcon {
-  background-image: url(../../paper-input/error-100.png);
+  background-image: url(../paper-input/error-100.png);
   background-size: 24px 24px;
   height: 24px;
   width: 24px;
@@ -3499,7 +3499,7 @@ Polymer('core-style', {
 
 @media (min-resolution: 2dppx) {
   #errorIcon {
-    background-image: url(../../paper-input/error-200.png);
+    background-image: url(../paper-input/error-200.png);
     background-size: 24px 24px;
   }
 }
@@ -3965,7 +3965,7 @@ Polymer('core-style', {
 </polymer-element>
 
 
-<polymer-element name="paper-slider" extends="core-range" attributes="snaps pin disabled secondaryProgress editable immediateValue" assetpath="../../paper-slider/">
+<polymer-element name="paper-slider" extends="core-range" attributes="snaps pin disabled secondaryProgress editable immediateValue" assetpath="../paper-slider/">
 <template>
 
   <style>/*
@@ -4396,7 +4396,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </polymer-element>
 
 
-<polymer-element name="time-picker" assetpath="../time-picker/">
+<polymer-element name="time-picker" assetpath="time-picker/">
   <template>
     <style>/* line 1, time-picker.scss */
 :host {
@@ -4442,14 +4442,14 @@ section {
 
   </template>
 
-  <script type="text/javascript" src="../time-picker/time-picker.js"></script>
+  <script type="text/javascript" src="time-picker/time-picker.js"></script>
 </polymer-element>
 
 
 
 
 
-<polymer-element name="datetime-picker" attributes="label" assetpath="../datetime-picker/">
+<polymer-element name="datetime-picker" attributes="label" assetpath="datetime-picker/">
   <template>
     <style>/* line 4, datetime-picker.scss */
 #picker {
@@ -4492,8 +4492,8 @@ core-input {
     </div>
   </template>
 
-  <script type="text/javascript" src="../../bowser/bowser.js"></script>
-  <script type="text/javascript" src="../datetime-picker/datetime-picker.js"></script>
+  <script type="text/javascript" src="../bowser/bowser.js"></script>
+  <script type="text/javascript" src="datetime-picker/datetime-picker.js"></script>
 </polymer-element>
 </div>
 

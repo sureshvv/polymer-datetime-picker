@@ -2,7 +2,7 @@
   var getAmPm, getHours, pad;
 
   getAmPm = function(hours) {
-    if (hours <= 12) {
+    if (hours < 12) {
       return 'AM';
     } else {
       return 'PM';

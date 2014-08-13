@@ -16,7 +16,7 @@ To run the development version locally:
 * clone the repo in an empty directory (see next bullet for reasons) & cd into it
 * run `bower install` (will install all packages in the parent directory!)
 * ` cd ..` then `python -m SimpleHTTPServer`
-* navigate to [http://localhost:8000/datetime-picker/demo2.html][1] to see it in action
+* navigate to [http://localhost:8000/datetime-picker/demo.html][1] to see it in action
 
 Compiling scss/coffee:
 * run `npm install`

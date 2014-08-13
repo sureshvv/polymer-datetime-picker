@@ -11,14 +11,12 @@ core-input {
   padding: 3px;
 }
 
-td {
+div.td {
   @include border-radius(4px, 4px);
 
   padding: 14px;
   text-align: center;
   cursor: pointer;
-
-
   &.dead-date {
     cursor: default;
     color: gray;
@@ -42,5 +40,4 @@ td {
     cursor: default;
     color:white;
   }
-
 }

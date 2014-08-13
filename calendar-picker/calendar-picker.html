@@ -25,11 +25,11 @@
         <th>Sat</th>
       </thead>
       <tbody>
-        <tr template repeat="{{week,index in weeks}}">
-          <td template repeat="{{day,index in week}}" on-tap="{{clickDay}}" day="{{day}}"
-              class="{{day <= 0 ? 'dead-date' : ''}} {{day == selectedDay && shownMonth === selectedMonth ? 'selected' : ''}}
-              {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }} {{onCurrentMonth && day == currentDay ? 'current-day' : ''}}">
+        <tr template repeat="{{week in weeks}}">
+          <td template repeat="{{day in week}}">
+            <div on-tap="{{clickDay}}" class="td {{day <= 0 ? 'dead-date' : ''}} {{day == selectedDay && shownMonth === selectedMonth ? 'selected' : ''}} {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }} {{onCurrentMonth && day == currentDay ? 'current-day' : ''}}" day="{{day}}">
               <span hidden?="{{day <= 0}}">{{day}}</span>
+            </div>
           </td>
         </tr>
       </tbody>

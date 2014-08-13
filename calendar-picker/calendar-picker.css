@@ -10,7 +10,7 @@ core-input {
 }
 
 /* line 14, calendar-picker.scss */
-td {
+div.td {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
@@ -18,27 +18,27 @@ td {
   text-align: center;
   cursor: pointer;
 }
-/* line 22, calendar-picker.scss */
-td.dead-date {
+/* line 20, calendar-picker.scss */
+div.td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 25, calendar-picker.scss */
-td.dead-date:hover {
+/* line 23, calendar-picker.scss */
+div.td.dead-date:hover {
   background-color: white;
   color: gray;
 }
-/* line 31, calendar-picker.scss */
-td.current-day {
+/* line 29, calendar-picker.scss */
+div.td.current-day {
   background-color: #e1e1e1;
 }
-/* line 35, calendar-picker.scss */
-td:hover {
+/* line 33, calendar-picker.scss */
+div.td:hover {
   background-color: #03a9f4;
   color: white;
 }
-/* line 40, calendar-picker.scss */
-td.selected {
+/* line 38, calendar-picker.scss */
+div.td.selected {
   background-color: #03a9f4;
   cursor: default;
   color: white;

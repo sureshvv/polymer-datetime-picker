@@ -1,4 +1,4 @@
-getAmPm = (hours) -> if hours <= 12 then 'AM' else 'PM'
+getAmPm = (hours) -> if hours < 12 then 'AM' else 'PM'
 
 getHours = (hours) ->
   if hours <= 12
