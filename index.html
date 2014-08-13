@@ -2639,16 +2639,12 @@ td.selected {
         <th>Sat</th>
       </thead>
       <tbody>
-        <template repeat="{{week,index in weeks}}">
-          <tr>
-            <template repeat="{{day,index in week}}">
-              <td on-tap="{{clickDay}}" day="{{day}}" class="{{day &lt;= 0 ? &apos;dead-date&apos; : &apos;&apos;}} {{day == selectedDay &amp;&amp; shownMonth === selectedMonth ? &apos;selected&apos; : &apos;&apos;}}
-                {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }} {{onCurrentMonth &amp;&amp; day == currentDay ? &apos;current-day&apos; : &apos;&apos;}}">
-                <span hidden?="{{day &lt;= 0}}">{{day}}</span>
-              </td>
-            </template>
-          </tr>
-        </template>
+        <tr template="" repeat="{{week,index in weeks}}">
+          <td template="" repeat="{{day,index in week}}" on-tap="{{clickDay}}" day="{{day}}" class="{{day &lt;= 0 ? &apos;dead-date&apos; : &apos;&apos;}} {{day == selectedDay &amp;&amp; shownMonth === selectedMonth ? &apos;selected&apos; : &apos;&apos;}}
+              {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }} {{onCurrentMonth &amp;&amp; day == currentDay ? &apos;current-day&apos; : &apos;&apos;}}">
+              <span hidden?="{{day &lt;= 0}}">{{day}}</span>
+          </td>
+        </tr>
       </tbody>
     </table>
   </template>
