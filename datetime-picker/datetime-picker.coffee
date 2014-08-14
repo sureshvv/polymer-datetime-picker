@@ -66,6 +66,7 @@ Polymer "datetime-picker",
       picker.style.left = left + 'px'
 
       @hidePicker = false
+      @$.calendar.pickerShown = true
 
   toggleShowCalendar: ->
     @showCalendar = !@showCalendar

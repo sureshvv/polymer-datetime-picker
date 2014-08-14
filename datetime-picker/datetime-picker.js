@@ -71,7 +71,8 @@
         num = bowser.webkit ? 55 : 30;
         picker.style.top = (top + num) + 'px';
         picker.style.left = left + 'px';
-        return this.hidePicker = false;
+        this.hidePicker = false;
+        return this.$.calendar.pickerShown = true;
       }
     },
     toggleShowCalendar: function() {

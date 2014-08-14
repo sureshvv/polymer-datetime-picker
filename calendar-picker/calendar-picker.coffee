@@ -18,14 +18,32 @@ getDaysInMonth = (year, month) ->
 getMonthName = (date) -> monthNames[date.getMonth()]
 
 Polymer "calendar-picker",
+  publish: {
+    pickerShown: false
+  }
+
   onCurrentMonth: true
+
+  observe: 
+    pickerShown: 'onPickerShown'
+
+  # fix for rendering issue on FF/Safari
+  instanceTemplate: (template) ->
+    HTMLTemplateElement.decorate(template)
+    @super(arguments)
 
   ready: ->
     @date =  new Date()
     @currentDay = @date.getDate()
 
     @shownDate = new Date()
+
     @shownDateChanged()
+
+  onPickerShown: ->
+    if @pickerShown and !@selectedDate
+      @selectedDate = new Date()
+      @selectedDateChanged()
 
   adjustDays: ->
     @shownDate.setDate(1)

@@ -3,7 +3,7 @@
 <link rel="import" href="../../paper-button/paper-button.html">
 <link rel="import" href="../../paper-ripple/paper-ripple.html">
 
-<polymer-element name="calendar-picker" attributes="selectedDate">
+<polymer-element name="calendar-picker" attributes="selectedDate" on-picker-shown='{{pickerShown}}'>
   <template>
     <link href="calendar-picker.css" rel="stylesheet">
 

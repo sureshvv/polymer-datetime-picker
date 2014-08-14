@@ -2573,7 +2573,7 @@ root if there is one. This implies:
 
 
 
-<polymer-element name="calendar-picker" attributes="selectedDate" assetpath="../calendar-picker/">
+<polymer-element name="calendar-picker" attributes="selectedDate" on-picker-shown="{{pickerShown}}" assetpath="../calendar-picker/">
   <template>
     <style>/* line 5, calendar-picker.scss */
 paper-button {
@@ -2681,12 +2681,28 @@ div.td.selected {
   };
 
   Polymer("calendar-picker", {
+    publish: {
+      pickerShown: false
+    },
     onCurrentMonth: true,
+    observe: {
+      pickerShown: 'onPickerShown'
+    },
+    instanceTemplate: function(template) {
+      HTMLTemplateElement.decorate(template);
+      return this["super"](arguments);
+    },
     ready: function() {
       this.date = new Date();
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
       return this.shownDateChanged();
+    },
+    onPickerShown: function() {
+      if (this.pickerShown && !this.selectedDate) {
+        this.selectedDate = new Date();
+        return this.selectedDateChanged();
+      }
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;
@@ -4672,11 +4688,11 @@ core-input {
 }
 </style>
 
-    <paper-input id="input" floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
+    <paper-input id="input" readonly floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
     </paper-input>
 
     <div id="picker" hidden?="{{hidePicker}}">
-      <calendar-picker on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}"></calendar-picker>
+      <calendar-picker id="calendar" on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}"></calendar-picker>
       <time-picker on-new-time-str="{{setTimeStr}}" hidden?="{{showCalendar}}"></time-picker>
 
       <div horizontal="" layout="" center-justified="" style="padding-top:10px">
@@ -4998,7 +5014,8 @@ core-input {
         num = bowser.webkit ? 55 : 30;
         picker.style.top = (top + num) + 'px';
         picker.style.left = left + 'px';
-        return this.hidePicker = false;
+        this.hidePicker = false;
+        return this.$.calendar.pickerShown = true;
       }
     },
     toggleShowCalendar: function() {

@@ -9,11 +9,11 @@
   <template>
     <link href="datetime-picker.css" rel="stylesheet">
 
-    <paper-input id='input' floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
+    <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
     </paper-input>
 
     <div id='picker' hidden?="{{hidePicker}}">
-      <calendar-picker on-new-date-str='{{setDateStr}}' hidden?="{{!showCalendar}}"></calendar-picker>
+      <calendar-picker id='calendar' on-new-date-str='{{setDateStr}}' hidden?="{{!showCalendar}}"></calendar-picker>
       <time-picker on-new-time-str='{{setTimeStr}}' hidden?='{{showCalendar}}'></time-picker>
 
       <div horizontal layout center-justified style='padding-top:10px'>

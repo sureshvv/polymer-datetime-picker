@@ -29,12 +29,28 @@
   };
 
   Polymer("calendar-picker", {
+    publish: {
+      pickerShown: false
+    },
     onCurrentMonth: true,
+    observe: {
+      pickerShown: 'onPickerShown'
+    },
+    instanceTemplate: function(template) {
+      HTMLTemplateElement.decorate(template);
+      return this["super"](arguments);
+    },
     ready: function() {
       this.date = new Date();
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
       return this.shownDateChanged();
+    },
+    onPickerShown: function() {
+      if (this.pickerShown && !this.selectedDate) {
+        this.selectedDate = new Date();
+        return this.selectedDateChanged();
+      }
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;
