@@ -15,6 +15,20 @@ Polymer "datetime-picker",
     else
       @addListeners()
 
+  ready: ->
+    @checkSize()
+
+  checkSize: ->
+    onresize = =>
+      console.log 'onresize'
+      width = window.innerWidth
+      if width < 400
+        @$.calendar
+        @$.picker.style.width = (width - 60) + 'px'
+
+    window.addEventListener 'resize', onresize
+    onresize()
+
   addListeners: ->
     @docClickListener = =>
       if not @clickedLocally

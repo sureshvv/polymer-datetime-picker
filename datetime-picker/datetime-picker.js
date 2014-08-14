@@ -15,6 +15,25 @@
         return this.addListeners();
       }
     },
+    ready: function() {
+      return this.checkSize();
+    },
+    checkSize: function() {
+      var onresize;
+      onresize = (function(_this) {
+        return function() {
+          var width;
+          console.log('onresize');
+          width = window.innerWidth;
+          if (width < 400) {
+            _this.$.calendar;
+            return _this.$.picker.style.width = (width - 60) + 'px';
+          }
+        };
+      })(this);
+      window.addEventListener('resize', onresize);
+      return onresize();
+    },
     addListeners: function() {
       this.docClickListener = (function(_this) {
         return function() {

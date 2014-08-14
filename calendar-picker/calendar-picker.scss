@@ -41,3 +41,21 @@ div.td {
     color:white;
   }
 }
+
+@media (max-width: 400px) {
+  div.td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  div.td {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 270px) {
+  div.td {
+    padding: 1px;
+  }
+}

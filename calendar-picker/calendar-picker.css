@@ -43,3 +43,22 @@ div.td.selected {
   cursor: default;
   color: white;
 }
+
+@media (max-width: 400px) {
+  /* line 46, calendar-picker.scss */
+  div.td {
+    padding: 10px;
+  }
+}
+@media (max-width: 320px) {
+  /* line 52, calendar-picker.scss */
+  div.td {
+    padding: 5px;
+  }
+}
+@media (max-width: 270px) {
+  /* line 58, calendar-picker.scss */
+  div.td {
+    padding: 1px;
+  }
+}
