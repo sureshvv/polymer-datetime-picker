@@ -1,4 +1,4 @@
-/* line 4, datetime-picker.scss */
+/* line 6, datetime-picker.scss */
 #picker {
   -webkit-border-radius: 10px 10px;
   -moz-border-radius: 10px / 10px;
@@ -15,32 +15,38 @@
   padding: 10px;
 }
 
-/* line 16, datetime-picker.scss */
+/* line 18, datetime-picker.scss */
 paper-button {
   font-size: 12px;
 }
 
-/* line 20, datetime-picker.scss */
+/* line 22, datetime-picker.scss */
 core-input {
   border: 1px dotted black;
   padding: 3px;
 }
 
-@media (max-width: 399px) {
-  /* line 26, datetime-picker.scss */
+@media (min-width: 400px) {
+  /* line 28, datetime-picker.scss */
   #picker {
-    height: 350px;
+    height: 400px;
   }
 }
-@media (max-width: 320px) {
-  /* line 31, datetime-picker.scss */
+@media (max-width: 360px) {
+  /* line 28, datetime-picker.scss */
   #picker {
-    height: 300px;
+    height: 360px;
   }
 }
-@media (max-width: 270px) {
-  /* line 37, datetime-picker.scss */
+@media (max-width: 325px) {
+  /* line 28, datetime-picker.scss */
   #picker {
-    height: 250px;
+    height: 320px;
+  }
+}
+@media (max-width: 310px) {
+  /* line 28, datetime-picker.scss */
+  #picker {
+    height: 320px;
   }
 }

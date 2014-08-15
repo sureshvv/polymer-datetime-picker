@@ -1,3 +1,5 @@
+@import "./../sass-globals/globals.scss";
+
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
@@ -22,20 +24,22 @@ core-input {
   padding: 3px;
 }
 
-@media (max-width: 399px) {
-  #picker {
-    height: 350px;
-  }
-}
-@media (max-width: 320px) {
-  #picker {
-    height: 300px;
-  }
-}
 
-@media (max-width: 270px) {
-  #picker {
-    height: 250px;
+#picker {
+  @media (min-width: $md-screen) {
+    height: 400px;
+  }
+
+  @media (max-width: $mm-screen) {
+    height: 360px;
+  }
+
+  @media (max-width: $sm-screen) {
+    height: 320px;
+  }
+
+  @media (max-width: $xs-screen) {
+    height: 320px;
   }
 
 }

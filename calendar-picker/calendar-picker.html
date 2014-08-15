@@ -28,7 +28,7 @@
         <tr template repeat="{{week in weeks}}">
 
           <div horizontal layout>
-            <td flex template repeat="{{day in week}}">
+            <td template repeat="{{day in week}}">
               <div on-tap="{{clickDay}}" class="td {{day <= 0 ? 'dead-date' : ''}} {{day == selectedDay && shownMonth === selectedMonth ? 'selected' : ''}} {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }} {{onCurrentMonth && day == currentDay ? 'current-day' : ''}}" day="{{day}}">
                 <span hidden?="{{day <= 0}}">{{day}}</span>
               </div>

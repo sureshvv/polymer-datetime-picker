@@ -1,3 +1,4 @@
+@import "./../sass-globals/globals.scss";
 @import "compass/css3/border-radius";
 
 $tdbg: #03a9f4;
@@ -42,20 +43,32 @@ div.td {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: $md-screen) {
+  div.td {
+    padding: 12px;
+  }
+}
+
+@media (max-width: $mm-screen) {
   div.td {
     padding: 10px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: $sm-screen) {
   div.td {
-    padding: 5px;
+    padding: 8px;
   }
 }
 
-@media (max-width: 270px) {
+@media (max-width: $xs-screen) {
   div.td {
-    padding: 1px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: $xss-screen) {
+  div.td {
+    padding: 2px;
   }
 }
