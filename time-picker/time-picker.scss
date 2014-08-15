@@ -8,8 +8,12 @@ section {
   padding: 20px 0;
 }
 
-paper-button {
+paper-button /deep/ span{
   font-size: 20px;
+}
+
+paper-button {
+  margin-top: 75px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
