@@ -2606,21 +2606,23 @@ div.td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 30, calendar-picker.scss */
+/* line 31, calendar-picker.scss */
 div.td.dead-date:hover {
   background-color: white;
   color: gray;
 }
-/* line 36, calendar-picker.scss */
+/* line 38, calendar-picker.scss */
 div.td.current-day {
   background-color: #e1e1e1;
 }
-/* line 40, calendar-picker.scss */
-div.td:hover {
-  background-color: #03a9f4;
-  color: white;
+@media (min-width: 400px) {
+  /* line 44, calendar-picker.scss */
+  div.td:hover {
+    background-color: #03a9f4;
+    color: white;
+  }
 }
-/* line 45, calendar-picker.scss */
+/* line 50, calendar-picker.scss */
 div.td.selected {
   background-color: #03a9f4;
   cursor: default;
@@ -2628,37 +2630,37 @@ div.td.selected {
 }
 
 @media (max-width: 400px) {
-  /* line 52, calendar-picker.scss */
+  /* line 57, calendar-picker.scss */
   div.td {
     padding: 16px;
   }
 }
 @media (max-width: 370px) {
-  /* line 52, calendar-picker.scss */
+  /* line 57, calendar-picker.scss */
   div.td {
     padding: 14px;
   }
 }
 @media (max-width: 335px) {
-  /* line 52, calendar-picker.scss */
+  /* line 57, calendar-picker.scss */
   div.td {
     padding: 12px;
   }
 }
 @media (max-width: 310px) {
-  /* line 52, calendar-picker.scss */
+  /* line 57, calendar-picker.scss */
   div.td {
     padding: 10px;
   }
 }
 @media (max-width: 285px) {
-  /* line 52, calendar-picker.scss */
+  /* line 57, calendar-picker.scss */
   div.td {
     padding: 7px;
   }
 }
 @media (max-width: 250px) {
-  /* line 52, calendar-picker.scss */
+  /* line 57, calendar-picker.scss */
   div.td {
     padding: 3px;
   }
