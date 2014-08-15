@@ -2575,18 +2575,18 @@ root if there is one. This implies:
 
 <polymer-element name="calendar-picker" attributes="selectedDate" on-picker-shown="{{pickerShown}}" assetpath="../calendar-picker/">
   <template>
-    <style>/* line 5, calendar-picker.scss */
+    <style>/* line 6, calendar-picker.scss */
 paper-button {
   font-size: 12px;
 }
 
-/* line 9, calendar-picker.scss */
+/* line 10, calendar-picker.scss */
 core-input {
   border: 1px dotted black;
   padding: 3px;
 }
 
-/* line 14, calendar-picker.scss */
+/* line 15, calendar-picker.scss */
 div.td {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
@@ -2595,26 +2595,26 @@ div.td {
   text-align: center;
   cursor: pointer;
 }
-/* line 20, calendar-picker.scss */
+/* line 21, calendar-picker.scss */
 div.td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 23, calendar-picker.scss */
+/* line 24, calendar-picker.scss */
 div.td.dead-date:hover {
   background-color: white;
   color: gray;
 }
-/* line 29, calendar-picker.scss */
+/* line 30, calendar-picker.scss */
 div.td.current-day {
   background-color: #e1e1e1;
 }
-/* line 33, calendar-picker.scss */
+/* line 34, calendar-picker.scss */
 div.td:hover {
   background-color: #03a9f4;
   color: white;
 }
-/* line 38, calendar-picker.scss */
+/* line 39, calendar-picker.scss */
 div.td.selected {
   background-color: #03a9f4;
   cursor: default;
@@ -2622,21 +2622,33 @@ div.td.selected {
 }
 
 @media (max-width: 400px) {
-  /* line 46, calendar-picker.scss */
+  /* line 47, calendar-picker.scss */
+  div.td {
+    padding: 12px;
+  }
+}
+@media (max-width: 360px) {
+  /* line 53, calendar-picker.scss */
   div.td {
     padding: 10px;
   }
 }
-@media (max-width: 320px) {
-  /* line 52, calendar-picker.scss */
+@media (max-width: 325px) {
+  /* line 59, calendar-picker.scss */
   div.td {
-    padding: 5px;
+    padding: 8px;
   }
 }
-@media (max-width: 270px) {
-  /* line 58, calendar-picker.scss */
+@media (max-width: 310px) {
+  /* line 65, calendar-picker.scss */
   div.td {
-    padding: 1px;
+    padding: 6px;
+  }
+}
+@media (max-width: 285px) {
+  /* line 71, calendar-picker.scss */
+  div.td {
+    padding: 2px;
   }
 }
 </style>
@@ -2661,7 +2673,7 @@ div.td.selected {
         <tr template="" repeat="{{week in weeks}}">
 
           <div horizontal="" layout="">
-            <td flex="" template="" repeat="{{day in week}}">
+            <td template="" repeat="{{day in week}}">
               <div on-tap="{{clickDay}}" class="td {{day &lt;= 0 ? &apos;dead-date&apos; : &apos;&apos;}} {{day == selectedDay &amp;&amp; shownMonth === selectedMonth ? &apos;selected&apos; : &apos;&apos;}} {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }} {{onCurrentMonth &amp;&amp; day == currentDay ? &apos;current-day&apos; : &apos;&apos;}}" day="{{day}}">
                 <span hidden?="{{day &lt;= 0}}">{{day}}</span>
               </div>
@@ -4682,7 +4694,7 @@ section {
 
 <polymer-element name="datetime-picker" attributes="label" assetpath="../datetime-picker/">
   <template>
-    <style>/* line 4, datetime-picker.scss */
+    <style>/* line 6, datetime-picker.scss */
 #picker {
   -webkit-border-radius: 10px 10px;
   -moz-border-radius: 10px / 10px;
@@ -4699,33 +4711,39 @@ section {
   padding: 10px;
 }
 
-/* line 16, datetime-picker.scss */
+/* line 18, datetime-picker.scss */
 paper-button {
   font-size: 12px;
 }
 
-/* line 20, datetime-picker.scss */
+/* line 22, datetime-picker.scss */
 core-input {
   border: 1px dotted black;
   padding: 3px;
 }
 
-@media (max-width: 399px) {
-  /* line 26, datetime-picker.scss */
+@media (min-width: 400px) {
+  /* line 28, datetime-picker.scss */
   #picker {
-    height: 350px;
+    height: 400px;
   }
 }
-@media (max-width: 320px) {
-  /* line 31, datetime-picker.scss */
+@media (max-width: 360px) {
+  /* line 28, datetime-picker.scss */
   #picker {
-    height: 300px;
+    height: 360px;
   }
 }
-@media (max-width: 270px) {
-  /* line 37, datetime-picker.scss */
+@media (max-width: 325px) {
+  /* line 28, datetime-picker.scss */
   #picker {
-    height: 250px;
+    height: 320px;
+  }
+}
+@media (max-width: 310px) {
+  /* line 28, datetime-picker.scss */
+  #picker {
+    height: 320px;
   }
 }
 </style>
