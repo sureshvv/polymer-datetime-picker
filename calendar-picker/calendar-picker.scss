@@ -27,7 +27,9 @@ div.td {
   &.dead-date {
     cursor: default;
     color: gray;
+
     &:hover {
+
       background-color: white;
       color: gray;
     }
@@ -37,9 +39,12 @@ div.td {
     background-color: rgb(225, 225, 225);
   }
 
-  &:hover {
-    background-color: $tdbg;
-    color: white;
+
+  @media (min-width: $md-screen) {
+    &:hover {
+      background-color: $tdbg;
+      color: white;
+    }
   }
 
   &.selected {
