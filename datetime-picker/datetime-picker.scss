@@ -26,7 +26,7 @@ core-input {
 
 
 #picker {
-  @media (min-width: $md-screen) {
+  @media (max-width: $md-screen) {
     height: 400px;
   }
 
