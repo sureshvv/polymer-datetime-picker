@@ -4591,12 +4591,17 @@ section {
 }
 
 /* line 11, time-picker.scss */
-paper-button {
+paper-button /deep/ span {
   font-size: 20px;
+}
+
+/* line 15, time-picker.scss */
+paper-button {
+  margin-top: 75px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* line 16, time-picker.scss */
+/* line 20, time-picker.scss */
 paper-button /deep/ paper-ripple {
   color: #3f51b5 !important;
 }
@@ -4618,9 +4623,6 @@ paper-button /deep/ paper-ripple {
           </paper-slider>
         </div>
       </div>
-      <br>
-      <br>
-      <br>
 
       <div flex="">
         <div horizontal="" layout="" center-justified="">
