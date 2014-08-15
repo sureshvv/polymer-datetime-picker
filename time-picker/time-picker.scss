@@ -8,6 +8,11 @@ section {
   padding: 20px 0;
 }
 
+paper-button {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 paper-button /deep/ paper-ripple{
+
   color: $ripple-color !important;
 }
