@@ -49,32 +49,27 @@ div.td {
   }
 }
 
-@media (max-width: $md-screen) {
-  div.td {
-    padding: 12px;
+div.td {
+  @media (max-width: $md-screen) {
+      padding: 16px;
   }
-}
 
-@media (max-width: $mm-screen) {
-  div.td {
-    padding: 10px;
+  @media (max-width: $mm-screen) {
+      padding: 14px;
   }
-}
 
-@media (max-width: $sm-screen) {
-  div.td {
-    padding: 8px;
+  @media (max-width: $sm-screen) {
+      padding: 12px;
   }
-}
 
-@media (max-width: $xs-screen) {
-  div.td {
-    padding: 6px;
+  @media (max-width: $xs-screen) {
+      padding: 10px;
   }
-}
 
-@media (max-width: $xss-screen) {
-  div.td {
-    padding: 2px;
+  @media (max-width: $xss-screen) {
+      padding: 7px;
+  }
+  @media (max-width: $tiny-screen) {
+      padding: 3px;
   }
 }

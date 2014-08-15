@@ -51,32 +51,38 @@ div.td.selected {
 }
 
 @media (max-width: 400px) {
-  /* line 53, calendar-picker.scss */
+  /* line 52, calendar-picker.scss */
+  div.td {
+    padding: 16px;
+  }
+}
+@media (max-width: 370px) {
+  /* line 52, calendar-picker.scss */
+  div.td {
+    padding: 14px;
+  }
+}
+@media (max-width: 335px) {
+  /* line 52, calendar-picker.scss */
   div.td {
     padding: 12px;
   }
 }
-@media (max-width: 360px) {
-  /* line 59, calendar-picker.scss */
+@media (max-width: 310px) {
+  /* line 52, calendar-picker.scss */
   div.td {
     padding: 10px;
   }
 }
-@media (max-width: 325px) {
-  /* line 65, calendar-picker.scss */
-  div.td {
-    padding: 8px;
-  }
-}
-@media (max-width: 310px) {
-  /* line 71, calendar-picker.scss */
-  div.td {
-    padding: 6px;
-  }
-}
 @media (max-width: 285px) {
-  /* line 77, calendar-picker.scss */
+  /* line 52, calendar-picker.scss */
   div.td {
-    padding: 2px;
+    padding: 7px;
+  }
+}
+@media (max-width: 250px) {
+  /* line 52, calendar-picker.scss */
+  div.td {
+    padding: 3px;
   }
 }

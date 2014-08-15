@@ -16,37 +16,35 @@
       }
     },
     ready: function() {
-      var body;
-      this.checkSize();
+      this.setupSizing();
+      this.listenEvent = 'click';
       if (bowser.ios) {
-        body = document.querySelector('body');
-        if (!body.getAttribute('style')) {
-          body.setAttribute('style', '');
-        }
-        return body.style.cursor = 'pointer';
+        return this.listenEvent = 'touchstart';
       }
     },
-    checkSize: function() {
-      var onresize;
-      onresize = (function(_this) {
+    setupSizing: function() {
+      this.onresize = (function(_this) {
         return function() {
           var width;
-          console.log('onresize');
           width = window.innerWidth;
           if (width < 400) {
-            width = (width - 60) + 'px';
+            _this.isMobile = true;
+            width = width - 20 + 'px';
           } else {
+            _this.isMobile = false;
             width = 'auto';
           }
+          _this.checkTopLeft();
           return _this.$.picker.style.width = width;
         };
       })(this);
-      window.addEventListener('resize', onresize);
-      return onresize();
+      return this.onresize();
     },
     addListeners: function() {
+      window.addEventListener('resize', this.onresize);
       this.docClickListener = (function(_this) {
         return function() {
+          console.log('docClickListener');
           if (!_this.clickedLocally) {
             _this.hidePicker = true;
           }
@@ -55,15 +53,17 @@
       })(this);
       this.localClickListener = (function(_this) {
         return function() {
+          console.log('localClickListener');
           return _this.clickedLocally = true;
         };
       })(this);
-      document.addEventListener('click', this.docClickListener);
-      return this.addEventListener('click', this.localClickListener);
+      document.addEventListener(this.listenEvent, this.docClickListener);
+      return this.addEventListener(this.listenEvent, this.localClickListener);
     },
     removeListeners: function() {
-      this.removeEventListener('click', this.localClickListener);
-      return document.removeEventListener('click', this.docClickListener);
+      this.removeEventListener(this.listenEvent, this.localClickListener);
+      document.removeEventListener(this.listenEvent, this.docClickListener);
+      return window.removeEventListener('resize', this.onresize);
     },
     selectedDateChanged: function() {
       this.selectedMonthName = this.$.calendar.getMonthName(this.selectedDate);
@@ -89,17 +89,23 @@
       }
       return this.fullStr = str;
     },
-    selectInput: function() {
+    checkTopLeft: function() {
       var left, num, picker, top;
-      console.log('@hidePicker');
-      console.log(this.hidePicker);
-      if (this.hidePicker) {
-        top = this.offsetTop;
+      console.log('checkTopLeft');
+      top = this.offsetTop;
+      if (this.isMobile) {
+        left = 0;
+      } else {
         left = this.offsetLeft;
-        picker = this.$.picker;
-        num = bowser.webkit ? 55 : 30;
-        picker.style.top = (top + num) + 'px';
-        picker.style.left = left + 'px';
+      }
+      picker = this.$.picker;
+      num = bowser.webkit ? 55 : 30;
+      picker.style.top = (top + num) + 'px';
+      return picker.style.left = left + 'px';
+    },
+    selectInput: function() {
+      if (this.hidePicker) {
+        this.checkTopLeft();
         this.hidePicker = false;
         return this.$.calendar.pickerShown = true;
       }
@@ -114,7 +120,9 @@
         width = '';
       }
       this.$.picker.style.height = height;
-      this.$.picker.style.width = width;
+      if (!this.isMobile) {
+        this.$.picker.style.width = width;
+      }
       return this.showCalendar = !this.showCalendar;
     }
   });

@@ -16,46 +16,49 @@ Polymer "datetime-picker",
       @addListeners()
 
   ready: ->
-    @checkSize()
-    # hack to get click events to bubble up, see:
-    # http://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+    @setupSizing()
 
+    @listenEvent = 'click'
     if bowser.ios
-      body = document.querySelector('body')
-      if not body.getAttribute('style')
-        body.setAttribute('style', '')
+      @listenEvent = 'touchstart'
 
-      body.style.cursor = 'pointer'
-
-  checkSize: ->
-    onresize = =>
-      console.log 'onresize'
+  setupSizing: ->
+    @onresize = =>
       width = window.innerWidth
       if width < 400
-        width = (width - 60) + 'px'
+        @isMobile = true
+        width = width - 20 + 'px'
       else
+        @isMobile = false
         width = 'auto'
+
+      @checkTopLeft()
 
       @$.picker.style.width = width
 
-    window.addEventListener 'resize', onresize
-    onresize()
+    @onresize()
 
   addListeners: ->
+    window.addEventListener 'resize', @onresize
+
     @docClickListener = =>
+      console.log 'docClickListener'
       if not @clickedLocally
         @hidePicker = true
 
       @clickedLocally = false
 
-    @localClickListener = => @clickedLocally = true
+    @localClickListener = => 
+      console.log 'localClickListener'
+      @clickedLocally = true
 
-    document.addEventListener 'click', @docClickListener
-    @addEventListener 'click', @localClickListener
+    document.addEventListener @listenEvent, @docClickListener
+    @addEventListener @listenEvent, @localClickListener
 
   removeListeners: ->
-    @removeEventListener 'click', @localClickListener
-    document.removeEventListener 'click', @docClickListener
+    @removeEventListener @listenEvent, @localClickListener
+    document.removeEventListener @listenEvent, @docClickListener
+    window.removeEventListener 'resize', @onresize
 
   selectedDateChanged: ->
     @selectedMonthName = @$.calendar.getMonthName(@selectedDate)
@@ -77,19 +80,25 @@ Polymer "datetime-picker",
 
     @fullStr = str
 
-  selectInput: ->
-    console.log '@hidePicker'
-    console.log @hidePicker
-    if @hidePicker
-      top = @offsetTop
+  checkTopLeft: ->
+    console.log 'checkTopLeft'
+    top = @offsetTop
+
+    if @isMobile
+      left = 0
+    else
       left = @offsetLeft
 
-      picker = @$.picker
+    picker = @$.picker
 
-      num = if bowser.webkit then 55 else 30
+    num = if bowser.webkit then 55 else 30
 
-      picker.style.top = (top + num) + 'px'
-      picker.style.left = left + 'px'
+    picker.style.top = (top + num) + 'px'
+    picker.style.left = left + 'px'
+
+  selectInput: ->
+    if @hidePicker
+      @checkTopLeft()
 
       @hidePicker = false
       @$.calendar.pickerShown = true
@@ -103,6 +112,8 @@ Polymer "datetime-picker",
       width = ''
 
     @$.picker.style.height = height
-    @$.picker.style.width = width
+
+    if !@isMobile
+      @$.picker.style.width = width
 
     @showCalendar = !@showCalendar
