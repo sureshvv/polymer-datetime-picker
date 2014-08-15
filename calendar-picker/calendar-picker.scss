@@ -12,7 +12,13 @@ core-input {
   padding: 3px;
 }
 
+paper-button /deep/ paper-ripple{
+  color: $ripple-color !important;
+}
+
 div.td {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
   @include border-radius(4px, 4px);
 
   padding: 14px;

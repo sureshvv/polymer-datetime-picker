@@ -8,33 +8,34 @@
   <template>
     <link href="time-picker.css" rel="stylesheet">
 
-    <section>
-    
-      <div center horizontal layout>
-        <div>Hours</div>
-        <paper-slider id='hours' on-trackx='{{hoursChanged}}' max="12" min="1">
-        </paper-slider>
-      </div>
+    <div vertical layout>
 
       <br/>
-      
-      <div center="" horizontal="" layout="">
-        <div>Minutes</div>
-        <paper-slider id='minutes' on-trackx='{{minChanged}}' max="59" min="1">
-        </paper-slider>
-      </div>
-
+      <div>
+        <div center horizontal layout>
+          <div>Hours</div>
+          <paper-slider id='hours' on-trackx='{{hoursChanged}}' max="12" min="1">
+          </paper-slider>
+        </div>
       <br/>
-      <br/>
-      <br/>
-
-      <div horizontal layout center-justified>
-        <div>
-        <paper-button raisedButton on-tap='{{toggleAmPm}}' label='{{ampm}}'></paper-button>
+        <div center="" horizontal="" layout="">
+          <div>Minutes</div>
+          <paper-slider id='minutes' on-trackx='{{minChanged}}' max="59" min="1">
+          </paper-slider>
         </div>
       </div>
-      
-    </section>
+      <br/>
+      <br/>
+      <br/>
+
+      <div flex>
+        <div horizontal layout center-justified>
+          <div>
+            <paper-button raisedButton on-tap='{{toggleAmPm}}' label='{{ampm}}'></paper-button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </template>
 

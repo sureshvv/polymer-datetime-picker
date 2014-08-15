@@ -7,7 +7,6 @@
   @include border-radius(10px, 10px);
   @include box-shadow(black 2px 2px 10px);
   background-color: white;
-  height: 400px;
   display: none;
   position: absolute;
   z-index: 1;
@@ -19,27 +18,11 @@ paper-button {
   font-size: 12px;
 }
 
+paper-button /deep/ paper-ripple{
+  color: $ripple-color !important;
+}
+
 core-input {
   border: 1px dotted black;
   padding: 3px;
-}
-
-
-#picker {
-  @media (max-width: $md-screen) {
-    height: 400px;
-  }
-
-  @media (max-width: $mm-screen) {
-    height: 360px;
-  }
-
-  @media (max-width: $sm-screen) {
-    height: 320px;
-  }
-
-  @media (max-width: $xs-screen) {
-    height: 320px;
-  }
-
 }

@@ -2587,7 +2587,13 @@ core-input {
 }
 
 /* line 15, calendar-picker.scss */
+paper-button /deep/ paper-ripple {
+  color: #3f51b5 !important;
+}
+
+/* line 19, calendar-picker.scss */
 div.td {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
@@ -2595,26 +2601,26 @@ div.td {
   text-align: center;
   cursor: pointer;
 }
-/* line 21, calendar-picker.scss */
+/* line 27, calendar-picker.scss */
 div.td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 24, calendar-picker.scss */
+/* line 30, calendar-picker.scss */
 div.td.dead-date:hover {
   background-color: white;
   color: gray;
 }
-/* line 30, calendar-picker.scss */
+/* line 36, calendar-picker.scss */
 div.td.current-day {
   background-color: #e1e1e1;
 }
-/* line 34, calendar-picker.scss */
+/* line 40, calendar-picker.scss */
 div.td:hover {
   background-color: #03a9f4;
   color: white;
 }
-/* line 39, calendar-picker.scss */
+/* line 45, calendar-picker.scss */
 div.td.selected {
   background-color: #03a9f4;
   cursor: default;
@@ -2622,31 +2628,31 @@ div.td.selected {
 }
 
 @media (max-width: 400px) {
-  /* line 47, calendar-picker.scss */
+  /* line 53, calendar-picker.scss */
   div.td {
     padding: 12px;
   }
 }
 @media (max-width: 360px) {
-  /* line 53, calendar-picker.scss */
+  /* line 59, calendar-picker.scss */
   div.td {
     padding: 10px;
   }
 }
 @media (max-width: 325px) {
-  /* line 59, calendar-picker.scss */
+  /* line 65, calendar-picker.scss */
   div.td {
     padding: 8px;
   }
 }
 @media (max-width: 310px) {
-  /* line 65, calendar-picker.scss */
+  /* line 71, calendar-picker.scss */
   div.td {
     padding: 6px;
   }
 }
 @media (max-width: 285px) {
-  /* line 71, calendar-picker.scss */
+  /* line 77, calendar-picker.scss */
   div.td {
     padding: 2px;
   }
@@ -2671,14 +2677,11 @@ div.td.selected {
       </thead>
       <tbody>
         <tr template="" repeat="{{week in weeks}}">
-
-          <div horizontal="" layout="">
-            <td template="" repeat="{{day in week}}">
-              <div on-tap="{{clickDay}}" class="td {{day &lt;= 0 ? &apos;dead-date&apos; : &apos;&apos;}} {{day == selectedDay &amp;&amp; shownMonth === selectedMonth ? &apos;selected&apos; : &apos;&apos;}} {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }} {{onCurrentMonth &amp;&amp; day == currentDay ? &apos;current-day&apos; : &apos;&apos;}}" day="{{day}}">
-                <span hidden?="{{day &lt;= 0}}">{{day}}</span>
-              </div>
-            </td>
-          </div>
+          <td template="" repeat="{{day in week}}">
+            <div on-tap="{{clickDay}}" class="td {{day &lt;= 0 ? &apos;dead-date&apos; : &apos;&apos;}} {{day == selectedDay &amp;&amp; shownMonth === selectedMonth ? &apos;selected&apos; : &apos;&apos;}} {{onCurrentMonth &amp;&amp; day &lt; currentDay ? &apos;dead-date&apos; : &apos;&apos; }} {{onCurrentMonth &amp;&amp; day == currentDay ? &apos;current-day&apos; : &apos;&apos;}}" day="{{day}}">
+              <span hidden?="{{day &lt;= 0}}">{{day}}</span>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -4577,49 +4580,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="time-picker" assetpath="../time-picker/">
   <template>
-    <style>/* line 1, time-picker.scss */
-:host {
-  padding: 10px;
-}
-
-/* line 4, time-picker.scss */
+    <style>/* line 3, time-picker.scss */
 paper-slider {
   width: 300px;
 }
 
-/* line 8, time-picker.scss */
+/* line 7, time-picker.scss */
 section {
   padding: 20px 0;
 }
+
+/* line 11, time-picker.scss */
+paper-button /deep/ paper-ripple {
+  color: #3f51b5 !important;
+}
 </style>
 
-    <section>
-    
-      <div center="" horizontal="" layout="">
-        <div>Hours</div>
-        <paper-slider id="hours" on-trackx="{{hoursChanged}}" max="12" min="1">
-        </paper-slider>
-      </div>
+    <div vertical="" layout="">
 
       <br>
-      
-      <div center="" horizontal="" layout="">
-        <div>Minutes</div>
-        <paper-slider id="minutes" on-trackx="{{minChanged}}" max="59" min="1">
-        </paper-slider>
-      </div>
-
+      <div>
+        <div center="" horizontal="" layout="">
+          <div>Hours</div>
+          <paper-slider id="hours" on-trackx="{{hoursChanged}}" max="12" min="1">
+          </paper-slider>
+        </div>
       <br>
-      <br>
-      <br>
-
-      <div horizontal="" layout="" center-justified="">
-        <div>
-        <paper-button raisedbutton="" on-tap="{{toggleAmPm}}" label="{{ampm}}"></paper-button>
+        <div center="" horizontal="" layout="">
+          <div>Minutes</div>
+          <paper-slider id="minutes" on-trackx="{{minChanged}}" max="59" min="1">
+          </paper-slider>
         </div>
       </div>
-      
-    </section>
+      <br>
+      <br>
+      <br>
+
+      <div flex="">
+        <div horizontal="" layout="" center-justified="">
+          <div>
+            <paper-button raisedbutton="" on-tap="{{toggleAmPm}}" label="{{ampm}}"></paper-button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </template>
 
@@ -4695,8 +4699,8 @@ section {
 
 
 <polymer-element name="datetime-picker" attributes="label" assetpath="../datetime-picker/">
-  <template>
-    <style>/* line 6, datetime-picker.scss */
+<template>
+  <style>/* line 6, datetime-picker.scss */
 #picker {
   -webkit-border-radius: 10px 10px;
   -moz-border-radius: 10px / 10px;
@@ -4705,7 +4709,6 @@ section {
   -moz-box-shadow: black 2px 2px 10px;
   box-shadow: black 2px 2px 10px;
   background-color: white;
-  height: 400px;
   display: none;
   position: absolute;
   z-index: 1;
@@ -4713,55 +4716,39 @@ section {
   padding: 10px;
 }
 
-/* line 18, datetime-picker.scss */
+/* line 17, datetime-picker.scss */
 paper-button {
   font-size: 12px;
 }
 
-/* line 22, datetime-picker.scss */
+/* line 21, datetime-picker.scss */
+paper-button /deep/ paper-ripple {
+  color: #3f51b5 !important;
+}
+
+/* line 25, datetime-picker.scss */
 core-input {
   border: 1px dotted black;
   padding: 3px;
 }
-
-@media (max-width: 400px) {
-  /* line 28, datetime-picker.scss */
-  #picker {
-    height: 400px;
-  }
-}
-@media (max-width: 360px) {
-  /* line 28, datetime-picker.scss */
-  #picker {
-    height: 360px;
-  }
-}
-@media (max-width: 325px) {
-  /* line 28, datetime-picker.scss */
-  #picker {
-    height: 320px;
-  }
-}
-@media (max-width: 310px) {
-  /* line 28, datetime-picker.scss */
-  #picker {
-    height: 320px;
-  }
-}
 </style>
 
-    <paper-input id="input" readonly floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
-    </paper-input>
+  <paper-input id="input" readonly floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
+  </paper-input>
 
-    <div id="picker" hidden?="{{hidePicker}}">
-      <calendar-picker id="calendar" on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}"></calendar-picker>
-      <time-picker on-new-time-str="{{setTimeStr}}" hidden?="{{showCalendar}}"></time-picker>
-
-      <div horizontal="" layout="" center-justified="" style="padding-top:10px">
-        <div><paper-button raisedbutton="" on-tap="{{toggleShowCalendar}}" label="{{showCalendar ? &apos;time picker&apos; : &apos;date picker&apos;}}" tabindex="0"></paper-button></div>
+  <div id="picker" hidden?="{{hidePicker}}">
+    <div vertical="" layout="" style="height:100%">
+      <div flex="">
+          <calendar-picker div="" id="calendar" on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}"></calendar-picker>
+          <time-picker div="" on-new-time-str="{{setTimeStr}}" hidden?="{{showCalendar}}"></time-picker>
+      </div>
+      <div>
+        <div horizontal="" layout="" center-justified="" style="padding-top:10px">
+          <div><paper-button raisedbutton="" on-tap="{{toggleShowCalendar}}" label="{{showCalendar ? &apos;time picker&apos; : &apos;date picker&apos;}}" tabindex="0"></paper-button></div>
+        </div>
       </div>
     </div>
-  </template>
+  </div></template>
 
   <script>/*!
   * Bowser - a browser detector
@@ -5031,9 +5018,11 @@ core-input {
           console.log('onresize');
           width = window.innerWidth;
           if (width < 400) {
-            _this.$.calendar;
-            return _this.$.picker.style.width = (width - 60) + 'px';
+            width = (width - 60) + 'px';
+          } else {
+            width = 'auto';
           }
+          return _this.$.picker.style.width = width;
         };
       })(this);
       window.addEventListener('resize', onresize);
@@ -5100,13 +5089,23 @@ core-input {
       }
     },
     toggleShowCalendar: function() {
+      var height, width;
+      if (this.showCalendar) {
+        height = this.$.picker.clientHeight - 20 + 'px';
+        width = this.$.picker.clientWidth - 20 + 'px';
+      } else {
+        height = '';
+        width = '';
+      }
+      this.$.picker.style.height = height;
+      this.$.picker.style.width = width;
       return this.showCalendar = !this.showCalendar;
     }
   });
 
 }).call(this);
 </script>
-</polymer-element>
+  </polymer-element>
 </div>
 
 </head>

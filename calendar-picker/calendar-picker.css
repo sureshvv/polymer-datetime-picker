@@ -10,7 +10,13 @@ core-input {
 }
 
 /* line 15, calendar-picker.scss */
+paper-button /deep/ paper-ripple {
+  color: #3f51b5 !important;
+}
+
+/* line 19, calendar-picker.scss */
 div.td {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
@@ -18,26 +24,26 @@ div.td {
   text-align: center;
   cursor: pointer;
 }
-/* line 21, calendar-picker.scss */
+/* line 27, calendar-picker.scss */
 div.td.dead-date {
   cursor: default;
   color: gray;
 }
-/* line 24, calendar-picker.scss */
+/* line 30, calendar-picker.scss */
 div.td.dead-date:hover {
   background-color: white;
   color: gray;
 }
-/* line 30, calendar-picker.scss */
+/* line 36, calendar-picker.scss */
 div.td.current-day {
   background-color: #e1e1e1;
 }
-/* line 34, calendar-picker.scss */
+/* line 40, calendar-picker.scss */
 div.td:hover {
   background-color: #03a9f4;
   color: white;
 }
-/* line 39, calendar-picker.scss */
+/* line 45, calendar-picker.scss */
 div.td.selected {
   background-color: #03a9f4;
   cursor: default;
@@ -45,31 +51,31 @@ div.td.selected {
 }
 
 @media (max-width: 400px) {
-  /* line 47, calendar-picker.scss */
+  /* line 53, calendar-picker.scss */
   div.td {
     padding: 12px;
   }
 }
 @media (max-width: 360px) {
-  /* line 53, calendar-picker.scss */
+  /* line 59, calendar-picker.scss */
   div.td {
     padding: 10px;
   }
 }
 @media (max-width: 325px) {
-  /* line 59, calendar-picker.scss */
+  /* line 65, calendar-picker.scss */
   div.td {
     padding: 8px;
   }
 }
 @media (max-width: 310px) {
-  /* line 65, calendar-picker.scss */
+  /* line 71, calendar-picker.scss */
   div.td {
     padding: 6px;
   }
 }
 @media (max-width: 285px) {
-  /* line 71, calendar-picker.scss */
+  /* line 77, calendar-picker.scss */
   div.td {
     padding: 2px;
   }

@@ -26,9 +26,11 @@
           console.log('onresize');
           width = window.innerWidth;
           if (width < 400) {
-            _this.$.calendar;
-            return _this.$.picker.style.width = (width - 60) + 'px';
+            width = (width - 60) + 'px';
+          } else {
+            width = 'auto';
           }
+          return _this.$.picker.style.width = width;
         };
       })(this);
       window.addEventListener('resize', onresize);
@@ -95,6 +97,16 @@
       }
     },
     toggleShowCalendar: function() {
+      var height, width;
+      if (this.showCalendar) {
+        height = this.$.picker.clientHeight - 20 + 'px';
+        width = this.$.picker.clientWidth - 20 + 'px';
+      } else {
+        height = '';
+        width = '';
+      }
+      this.$.picker.style.height = height;
+      this.$.picker.style.width = width;
       return this.showCalendar = !this.showCalendar;
     }
   });

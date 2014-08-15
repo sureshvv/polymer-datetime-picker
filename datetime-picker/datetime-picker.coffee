@@ -23,8 +23,11 @@ Polymer "datetime-picker",
       console.log 'onresize'
       width = window.innerWidth
       if width < 400
-        @$.calendar
-        @$.picker.style.width = (width - 60) + 'px'
+        width = (width - 60) + 'px'
+      else
+        width = 'auto'
+
+      @$.picker.style.width = width
 
     window.addEventListener 'resize', onresize
     onresize()
@@ -83,4 +86,14 @@ Polymer "datetime-picker",
       @$.calendar.pickerShown = true
 
   toggleShowCalendar: ->
+    if @showCalendar
+      height = @$.picker.clientHeight - 20 + 'px'
+      width = @$.picker.clientWidth - 20 + 'px'
+    else
+      height = ''
+      width = ''
+
+    @$.picker.style.height = height
+    @$.picker.style.width = width
+
     @showCalendar = !@showCalendar
