@@ -17,6 +17,15 @@ Polymer "datetime-picker",
 
   ready: ->
     @checkSize()
+    # hack to get click events to bubble up, see:
+    # http://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+
+    if bowser.ios
+      body = document.querySelector('body')
+      if not body.getAttribute('style')
+        body.setAttribute('style', '')
+
+      body.style.cursor = 'pointer'
 
   checkSize: ->
     onresize = =>

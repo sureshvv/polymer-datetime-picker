@@ -5017,7 +5017,13 @@ core-input {
       }
     },
     ready: function() {
-      return this.checkSize();
+      var body;
+      this.checkSize();
+      body = document.querySelector('body');
+      if (!body.getAttribute('style')) {
+        body.setAttribute('style', '');
+      }
+      return body.style.cursor = 'pointer';
     },
     checkSize: function() {
       var onresize;
@@ -5118,8 +5124,8 @@ core-input {
 </div>
 
 </head>
-<body unresolved="">
-  <div style="padding-left:10px">
+<body unresolved="" style="color:black;margin:0">
+  <div style="padding-left:10px;">
     <p>Polymer datetime picker demo: </p>
 
     <datetime-picker label="Some time"></datetime-picker>

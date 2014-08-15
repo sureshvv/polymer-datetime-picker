@@ -16,7 +16,15 @@
       }
     },
     ready: function() {
-      return this.checkSize();
+      var body;
+      this.checkSize();
+      if (bowser.ios) {
+        body = document.querySelector('body');
+        if (!body.getAttribute('style')) {
+          body.setAttribute('style', '');
+        }
+        return body.style.cursor = 'pointer';
+      }
     },
     checkSize: function() {
       var onresize;
