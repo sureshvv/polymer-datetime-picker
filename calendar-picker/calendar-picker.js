@@ -42,7 +42,9 @@
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
       this.shownDateChanged();
-      return this.selectedDate = new Date();
+      if (!this.selectedDate) {
+        return this.selectedDate = new Date();
+      }
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;

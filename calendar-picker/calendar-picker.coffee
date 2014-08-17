@@ -37,7 +37,8 @@ Polymer "calendar-picker",
 
     @shownDateChanged()
 
-    @selectedDate = new Date()
+    if !@selectedDate
+      @selectedDate = new Date()
 
   adjustDays: ->
     @shownDate.setDate(1)
