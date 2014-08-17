@@ -4,28 +4,27 @@
 <link rel="import" href="../../core-input/core-input.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 <link rel="import" href="../../paper-ripple/paper-ripple.html">
+<link rel="import" href="../picker-popup/picker-popup.html">
 
 <polymer-element name="datetime-picker" attributes='label'>
-<template>
-  <link href="datetime-picker.css" rel="stylesheet">
+  <template>
+    <link href="datetime-picker.css" rel="stylesheet">
 
-  <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
-  </paper-input>
+    <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
+    </paper-input>
 
-  <div id='picker' hidden?="{{hidePicker}}">
-    <div vertical layout style='height:100%'>
-      <div flex>
-          <calendar-picker div id='calendar' on-new-date-str='{{setDateStr}}' hidden?="{{!showCalendar}}"></calendar-picker>
-          <time-picker div on-new-time-str='{{setTimeStr}}' hidden?='{{showCalendar}}'></time-picker>
-      </div>
-      <div>
-        <div horizontal layout center-justified style='padding-top:10px'>
-          <div><paper-button raisedButton on-tap="{{toggleShowCalendar}}" label="{{showCalendar ? 'time picker' : 'date picker'}}" tabindex='0'></paper-button></div>
-        </div>
-      </div>
-    </div>
+    <template if='{{!hidePicker}}'>
+      <picker-popup id='popup'
+        on-window-resized='{{updateTopLeft}}'
+        selectedDate='{{selectedDate}}'
+        inputTop='{{inputTop}}' inputLeft='{{inputLeft}}'
+        on-new-date-str='{{setDateStr}}'
+        on-new-time-str='{{setTimeStr}}'
+        on-hide-picker='{{onHidePicker}}'>
+      </picker-popup>
+    </template>
   </template>
 
   <script type="text/javascript" src='../../bowser/bowser.js'></script>
   <script type="text/javascript" src='datetime-picker.js'></script>
-  </polymer-element>
+</polymer-element>

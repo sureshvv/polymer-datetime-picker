@@ -1,0 +1,38 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../calendar-picker/calendar-picker.html">
+<link rel="import" href="../time-picker/time-picker.html">
+<link rel="import" href="../../core-input/core-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-ripple/paper-ripple.html">
+
+<polymer-element name="picker-popup" attributes='selectedDate inputTop inputLeft'>
+  <template>
+    <link href="picker-popup.css" rel="stylesheet">
+
+    <div vertical layout style='height:100%'>
+      <div flex on-calendar-shown='{{showCalendarChanged}}'>
+        <template if='{{showCalendar}}'>
+          <calendar-picker id='calendar' 
+            selectedDate='{{selectedDate}}'
+            on-new-date-str='{{setDateStr}}'>
+          </calendar-picker>
+        </template>
+        <template if='{{!showCalendar}}'>
+          <time-picker 
+            selectedDate='{{selectedDate}}'
+            on-new-time-str='{{setTimeStr}}'>
+          </time-picker>
+        </template>
+      </div>
+      <div>
+        <div horizontal layout center-justified style='padding-top:10px'>
+          <div>
+            <paper-button raisedButton on-tap="{{toggleShowCalendar}}" label="{{bottomLabel}}" tabindex='0'>
+            </paper-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script type="text/javascript" src='picker-popup.js'></script>
+</polymer-element>

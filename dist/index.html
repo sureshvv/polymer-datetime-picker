@@ -2726,12 +2726,9 @@ div.td.selected {
   };
 
   Polymer("calendar-picker", {
-    publish: {
-      pickerShown: false
-    },
     onCurrentMonth: true,
     observe: {
-      pickerShown: 'onPickerShown'
+      selectedDate: 'selectedDateChanged'
     },
     instanceTemplate: function(template) {
       HTMLTemplateElement.decorate(template);
@@ -2741,13 +2738,8 @@ div.td.selected {
       this.date = new Date();
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
-      return this.shownDateChanged();
-    },
-    onPickerShown: function() {
-      if (this.pickerShown && !this.selectedDate) {
-        this.selectedDate = new Date();
-        return this.selectedDateChanged();
-      }
+      this.shownDateChanged();
+      return this.selectedDate = new Date();
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;
@@ -4586,7 +4578,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </polymer-element>
 
 
-<polymer-element name="time-picker" assetpath="../time-picker/">
+<polymer-element name="time-picker" attributes="date" assetpath="../time-picker/">
   <template>
     <style>/* line 3, time-picker.scss */
 paper-slider {
@@ -4688,13 +4680,17 @@ paper-button /deep/ paper-ripple {
     },
     ready: function() {
       var d;
-      d = new Date();
+      d = this.date || new Date();
       this.minutes = d.getMinutes();
       this.hours = getHours(d.getHours());
       this.ampm = getAmPm(d.getHours());
       this.$.hours.value = this.hours;
       this.$.minutes.value = this.minutes;
       return this.fireNewTimeString();
+    },
+    attached: function() {
+      console.log('attached');
+      return this.fire('calendar-shown', false);
     },
     fireNewTimeString: function() {
       var str;
@@ -4714,10 +4710,16 @@ paper-button /deep/ paper-ripple {
 
 
 
-<polymer-element name="datetime-picker" attributes="label" assetpath="../datetime-picker/">
-<template>
-  <style>/* line 6, datetime-picker.scss */
-#picker {
+
+
+
+
+
+
+<polymer-element name="picker-popup" attributes="selectedDate inputTop inputLeft" assetpath="../picker-popup/">
+  <template>
+    <style>/* line 6, picker-popup.scss */
+:host {
   -webkit-border-radius: 10px 10px;
   -moz-border-radius: 10px / 10px;
   border-radius: 10px / 10px;
@@ -4732,40 +4734,160 @@ paper-button /deep/ paper-ripple {
   padding: 10px;
 }
 
-/* line 17, datetime-picker.scss */
+/* line 18, picker-popup.scss */
 paper-button {
   font-size: 12px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* line 22, datetime-picker.scss */
+/* line 23, picker-popup.scss */
 paper-button /deep/ paper-ripple {
   color: #3f51b5 !important;
 }
+</style>
 
-/* line 26, datetime-picker.scss */
+    <div vertical="" layout="" style="height:100%">
+      <div flex="" on-calendar-shown="{{showCalendarChanged}}">
+        <template if="{{showCalendar}}">
+          <calendar-picker id="calendar" selecteddate="{{selectedDate}}" on-new-date-str="{{setDateStr}}">
+          </calendar-picker>
+        </template>
+        <template if="{{!showCalendar}}">
+          <time-picker selecteddate="{{selectedDate}}" on-new-time-str="{{setTimeStr}}">
+          </time-picker>
+        </template>
+      </div>
+      <div>
+        <div horizontal="" layout="" center-justified="" style="padding-top:10px">
+          <div>
+            <paper-button raisedbutton="" on-tap="{{toggleShowCalendar}}" label="{{bottomLabel}}" tabindex="0">
+            </paper-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>(function() {
+  Polymer("picker-popup", {
+    showCalendar: true,
+    bottomLabel: 'time picker',
+    observe: {
+      showCalendar: 'showCalendarChanged'
+    },
+    ready: function() {
+      this.listenEvent = 'click';
+      if (bowser.ios) {
+        this.listenEvent = 'touchstart';
+      }
+      this.addListeners();
+      return this.setupSizing();
+    },
+    detached: function() {
+      return this.removeListeners();
+    },
+    checkTopLeft: function() {
+      var left, num, top;
+      top = this.inputTop;
+      if (this.isMobile) {
+        left = 0;
+      } else {
+        left = this.inputLeft;
+      }
+      num = bowser.webkit ? 55 : 30;
+      this.style.top = (top + num) + 'px';
+      return this.style.left = left + 'px';
+    },
+    setupSizing: function() {
+      this.onresize = (function(_this) {
+        return function() {
+          var width;
+          width = window.innerWidth;
+          if (width < 400) {
+            _this.isMobile = true;
+            width = width - 20 + 'px';
+          } else {
+            _this.isMobile = false;
+            width = 'auto';
+          }
+          _this.checkTopLeft();
+          return _this.style.width = width;
+        };
+      })(this);
+      return this.onresize();
+    },
+    addListeners: function() {
+      window.addEventListener('resize', (function(_this) {
+        return function() {
+          _this.fire('window-resized');
+          return _this.onresize();
+        };
+      })(this));
+      this.docClickListener = (function(_this) {
+        return function() {
+          if (!_this.clickedLocally) {
+            console.log('fire hidePicker');
+            _this.fire('hide-picker');
+          }
+          return _this.clickedLocally = false;
+        };
+      })(this);
+      this.localClickListener = (function(_this) {
+        return function() {
+          console.log('localClickListener');
+          return _this.clickedLocally = true;
+        };
+      })(this);
+      document.addEventListener(this.listenEvent, this.docClickListener);
+      return this.addEventListener(this.listenEvent, this.localClickListener);
+    },
+    removeListeners: function() {
+      this.removeEventListener(this.listenEvent, this.localClickListener);
+      document.removeEventListener(this.listenEvent, this.docClickListener);
+      return window.removeEventListener('resize', this.onresize);
+    },
+    toggleShowCalendar: function() {
+      return this.showCalendar = !this.showCalendar;
+    },
+    showCalendarChanged: function() {
+      var height, width;
+      if (this.showCalendar) {
+        height = '';
+        width = '';
+        this.bottomLabel = 'time picker';
+      } else {
+        height = this.clientHeight - 20 + 'px';
+        width = this.clientWidth - 20 + 'px';
+        this.bottomLabel = 'date picker';
+      }
+      this.style.height = height;
+      if (!this.isMobile) {
+        return this.style.width = width;
+      }
+    }
+  });
+
+}).call(this);
+</script>
+</polymer-element>
+
+
+<polymer-element name="datetime-picker" attributes="label" assetpath="../datetime-picker/">
+  <template>
+    <style>/* line 3, datetime-picker.scss */
 core-input {
   border: 1px dotted black;
   padding: 3px;
 }
 </style>
 
-  <paper-input id="input" readonly floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
-  </paper-input>
+    <paper-input id="input" readonly floatinglabel="" on-tap="{{selectInput}}" label="{{label}}" value="{{fullStr}}">
+    </paper-input>
 
-  <div id="picker" hidden?="{{hidePicker}}">
-    <div vertical="" layout="" style="height:100%">
-      <div flex="">
-          <calendar-picker div="" id="calendar" on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}"></calendar-picker>
-          <time-picker div="" on-new-time-str="{{setTimeStr}}" hidden?="{{showCalendar}}"></time-picker>
-      </div>
-      <div>
-        <div horizontal="" layout="" center-justified="" style="padding-top:10px">
-          <div><paper-button raisedbutton="" on-tap="{{toggleShowCalendar}}" label="{{showCalendar ? &apos;time picker&apos; : &apos;date picker&apos;}}" tabindex="0"></paper-button></div>
-        </div>
-      </div>
-    </div>
-  </div></template>
+    <template if="{{!hidePicker}}">
+      <picker-popup id="popup" on-window-resized="{{updateTopLeft}}" selecteddate="{{selectedDate}}" inputtop="{{inputTop}}" inputleft="{{inputLeft}}" on-new-date-str="{{setDateStr}}" on-new-time-str="{{setTimeStr}}" on-hide-picker="{{onHidePicker}}">
+      </picker-popup>
+    </template>
+  </template>
 
   <script>/*!
   * Bowser - a browser detector
@@ -5012,72 +5134,15 @@ core-input {
     showCalendar: true,
     hidePicker: true,
     observe: {
-      selectedDate: "selectedDateChanged",
-      hidePicker: "pickerShownOrHidden",
       timeString: 'setFullStr',
       dateString: 'setFullStr'
     },
-    pickerShownOrHidden: function() {
-      if (this.hidePicker) {
-        return this.removeListeners();
-      } else {
-        return this.addListeners();
-      }
-    },
     ready: function() {
-      this.setupSizing();
-      this.listenEvent = 'click';
-      if (bowser.ios) {
-        return this.listenEvent = 'touchstart';
-      }
+      return this.updateTopLeft();
     },
-    setupSizing: function() {
-      this.onresize = (function(_this) {
-        return function() {
-          var width;
-          width = window.innerWidth;
-          if (width < 400) {
-            _this.isMobile = true;
-            width = width - 20 + 'px';
-          } else {
-            _this.isMobile = false;
-            width = 'auto';
-          }
-          _this.checkTopLeft();
-          return _this.$.picker.style.width = width;
-        };
-      })(this);
-      return this.onresize();
-    },
-    addListeners: function() {
-      window.addEventListener('resize', this.onresize);
-      this.docClickListener = (function(_this) {
-        return function() {
-          console.log('docClickListener');
-          if (!_this.clickedLocally) {
-            _this.hidePicker = true;
-          }
-          return _this.clickedLocally = false;
-        };
-      })(this);
-      this.localClickListener = (function(_this) {
-        return function() {
-          console.log('localClickListener');
-          return _this.clickedLocally = true;
-        };
-      })(this);
-      document.addEventListener(this.listenEvent, this.docClickListener);
-      return this.addEventListener(this.listenEvent, this.localClickListener);
-    },
-    removeListeners: function() {
-      this.removeEventListener(this.listenEvent, this.localClickListener);
-      document.removeEventListener(this.listenEvent, this.docClickListener);
-      return window.removeEventListener('resize', this.onresize);
-    },
-    selectedDateChanged: function() {
-      this.selectedMonthName = this.$.calendar.getMonthName(this.selectedDate);
-      this.selectedDay = this.selectedDate.getDate();
-      return this.selectedYear = this.selectedDate.getFullYear();
+    updateTopLeft: function() {
+      this.inputTop = this.offsetTop;
+      return this.inputLeft = this.offsetLeft;
     },
     setDateStr: function(e, str, sender) {
       return this.dateString = str;
@@ -5098,47 +5163,19 @@ core-input {
       }
       return this.fullStr = str;
     },
-    checkTopLeft: function() {
-      var left, num, picker, top;
-      console.log('checkTopLeft');
-      top = this.offsetTop;
-      if (this.isMobile) {
-        left = 0;
-      } else {
-        left = this.offsetLeft;
-      }
-      picker = this.$.picker;
-      num = bowser.webkit ? 55 : 30;
-      picker.style.top = (top + num) + 'px';
-      return picker.style.left = left + 'px';
-    },
     selectInput: function() {
       if (this.hidePicker) {
-        this.checkTopLeft();
-        this.hidePicker = false;
-        return this.$.calendar.pickerShown = true;
+        return this.hidePicker = false;
       }
     },
-    toggleShowCalendar: function() {
-      var height, width;
-      if (this.showCalendar) {
-        height = this.$.picker.clientHeight - 20 + 'px';
-        width = this.$.picker.clientWidth - 20 + 'px';
-      } else {
-        height = '';
-        width = '';
-      }
-      this.$.picker.style.height = height;
-      if (!this.isMobile) {
-        this.$.picker.style.width = width;
-      }
-      return this.showCalendar = !this.showCalendar;
+    onHidePicker: function() {
+      return this.hidePicker = true;
     }
   });
 
 }).call(this);
 </script>
-  </polymer-element>
+</polymer-element>
 </div>
 
 </head>

@@ -43,13 +43,17 @@
     },
     ready: function() {
       var d;
-      d = new Date();
+      d = this.date || new Date();
       this.minutes = d.getMinutes();
       this.hours = getHours(d.getHours());
       this.ampm = getAmPm(d.getHours());
       this.$.hours.value = this.hours;
       this.$.minutes.value = this.minutes;
       return this.fireNewTimeString();
+    },
+    attached: function() {
+      console.log('attached');
+      return this.fire('calendar-shown', false);
     },
     fireNewTimeString: function() {
       var str;
