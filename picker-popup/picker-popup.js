@@ -76,7 +76,14 @@
       document.removeEventListener(this.listenEvent, this.docClickListener);
       return window.removeEventListener('resize', this.onresize);
     },
+    storeHeight: function() {
+      this.height = this.clientHeight - 20 + 'px';
+      return this.width = this.clientWidth - 20 + 'px';
+    },
     toggleShowCalendar: function() {
+      if (this.showCalendar) {
+        this.storeHeight();
+      }
       return this.showCalendar = !this.showCalendar;
     },
     showCalendarChanged: function() {
@@ -86,8 +93,8 @@
         width = '';
         this.bottomLabel = 'time picker';
       } else {
-        height = this.clientHeight - 20 + 'px';
-        width = this.clientWidth - 20 + 'px';
+        height = this.height;
+        width = this.width;
         this.bottomLabel = 'date picker';
       }
       this.style.height = height;

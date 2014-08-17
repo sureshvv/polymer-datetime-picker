@@ -1,6 +1,5 @@
 (function() {
   Polymer("datetime-picker", {
-    showCalendar: true,
     hidePicker: true,
     observe: {
       timeString: 'setFullStr',

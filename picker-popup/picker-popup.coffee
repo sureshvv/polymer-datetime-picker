@@ -68,7 +68,15 @@ Polymer "picker-popup",
     document.removeEventListener @listenEvent, @docClickListener
     window.removeEventListener 'resize', @onresize
 
+  storeHeight: ->
+    # store height/width so that height/width stays the same when toggling
+    # between calendar/time picker
+    @height =  @clientHeight - 20 + 'px'
+    @width = @clientWidth - 20 + 'px'
+
   toggleShowCalendar: ->
+    if @showCalendar
+      @storeHeight()
     @showCalendar = !@showCalendar
 
   showCalendarChanged: ->
@@ -77,8 +85,8 @@ Polymer "picker-popup",
       width = ''
       @bottomLabel = 'time picker'
     else
-      height =  @clientHeight - 20 + 'px'
-      width = @clientWidth - 20 + 'px'
+      height =  @height
+      width = @width
       @bottomLabel = 'date picker'
 
     @style.height = height
