@@ -2739,7 +2739,9 @@ div.td.selected {
       this.currentDay = this.date.getDate();
       this.shownDate = new Date();
       this.shownDateChanged();
-      return this.selectedDate = new Date();
+      if (!this.selectedDate) {
+        return this.selectedDate = new Date();
+      }
     },
     adjustDays: function() {
       var days, firstDay, _i, _results;
@@ -4748,14 +4750,10 @@ paper-button /deep/ paper-ripple {
 
     <div vertical="" layout="" style="height:100%">
       <div flex="" on-calendar-shown="{{showCalendarChanged}}">
-        <template if="{{showCalendar}}">
-          <calendar-picker id="calendar" selecteddate="{{selectedDate}}" on-new-date-str="{{setDateStr}}">
-          </calendar-picker>
-        </template>
-        <template if="{{!showCalendar}}">
-          <time-picker selecteddate="{{selectedDate}}" on-new-time-str="{{setTimeStr}}">
-          </time-picker>
-        </template>
+        <calendar-picker id="calendar" selecteddate="{{selectedDate}}" on-new-date-str="{{setDateStr}}" hidden?="{{!showCalendar}}">
+        </calendar-picker>
+        <time-picker selecteddate="{{selectedDate}}" on-new-time-str="{{setTimeStr}}" hidden?="{{showCalendar}}">
+        </time-picker>
       </div>
       <div>
         <div horizontal="" layout="" center-justified="" style="padding-top:10px">
