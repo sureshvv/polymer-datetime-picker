@@ -6,14 +6,16 @@ Polymer "picker-popup",
     showCalendar: 'showCalendarChanged'
 
   ready: ->
-    @listenEvent = 'click'
-    if bowser.ios
-      @listenEvent = 'touchstart'
-
+    @super()
     @addListeners()
     @setupSizing()
 
+  open: ->
+    @super()
+    @async ->
+      @checkTopLeft()
   detached: ->
+    @super()
     @removeListeners()
 
   checkTopLeft: ->
@@ -24,7 +26,7 @@ Polymer "picker-popup",
     else
       left = @inputLeft
 
-    num = if bowser.webkit then 55 else 30
+    num = if bowser.webkit then 65 else 30
 
     @style.top = (top + num) + 'px'
     @style.left = left + 'px'
@@ -49,30 +51,17 @@ Polymer "picker-popup",
       @fire('window-resized')
       @onresize()
 
-    @docClickListener = =>
-      if not @clickedLocally
-        console.log 'fire hidePicker'
-        @fire('hide-picker')
-
-      @clickedLocally = false
-
-    @localClickListener = => 
-      console.log 'localClickListener'
-      @clickedLocally = true
-
-    document.addEventListener @listenEvent, @docClickListener
-    @addEventListener @listenEvent, @localClickListener
-
   removeListeners: ->
-    @removeEventListener @listenEvent, @localClickListener
-    document.removeEventListener @listenEvent, @docClickListener
     window.removeEventListener 'resize', @onresize
 
   storeHeight: ->
     # store height/width so that height/width stays the same when toggling
     # between calendar/time picker
-    @height =  @clientHeight - 20 + 'px'
-    @width = @clientWidth - 20 + 'px'
+    div = @$.top.children[0]
+    div.height =  div.clientHeight + 'px'
+    div.width = div.clientWidth + 'px'
+    @height =  @clientHeight + 'px'
+    @width = @clientWidth + 'px'
 
   toggleShowCalendar: ->
     if @showCalendar
@@ -80,15 +69,18 @@ Polymer "picker-popup",
     @showCalendar = !@showCalendar
 
   showCalendarChanged: ->
+    div = @$.top.children[0]
     if @showCalendar
-      height = ''
+      height = dheight = ''
       width = ''
       @bottomLabel = 'time picker'
     else
-      height =  @height
+      height = @height
       width = @width
+      dheight = div.height
       @bottomLabel = 'date picker'
 
+    div.style.height = dheight
     @style.height = height
 
     if !@isMobile

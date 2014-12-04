@@ -1,4 +1,8 @@
-@import "./../sass-globals/globals.scss";
+@import "../sass-globals.scss";
+
+#input {
+  width: 300px;
+}
 
 core-input {
   border: 1px dotted black;

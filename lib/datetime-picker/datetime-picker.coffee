@@ -1,10 +1,9 @@
 Polymer "datetime-picker",
   hidePicker: true
 
-  observe: {
+  observe:
     timeString: 'setFullStr'
     dateString: 'setFullStr'
-  }
 
   ready: ->
     @updateTopLeft()
@@ -29,8 +28,5 @@ Polymer "datetime-picker",
     @fullStr = str
 
   selectInput: ->
-    if @hidePicker
-      @hidePicker = false
-
-  onHidePicker: ->
-    @hidePicker = true
+    @async ->
+      @$.popup.open()

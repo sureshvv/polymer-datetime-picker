@@ -1,18 +1,13 @@
-<link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../../core-input/core-input.html">
-<link rel="import" href="../../paper-button/paper-button.html">
-<link rel="import" href="../../paper-ripple/paper-ripple.html">
-
 <polymer-element name="calendar-picker" attributes="selectedDate" on-picker-shown='{{pickerShown}}'>
   <template>
     <link href="calendar-picker.css" rel="stylesheet">
 
     <div layout horizontal justified>
-      <div><paper-button raisedButton on-tap="{{clickPrevious}}" tabindex='0'
+      <div><paper-button raised on-tap="{{clickPrevious}}" tabindex='0'
         disabled?="{{onCurrentMonth}}">prev</paper-button>
       </div>
       <div layout vertical center-justified>{{shownMonthName}} {{shownYear}}</div>
-      <div><paper-button floatinglabel raisedButton on-tap="{{clickNext}}">next</paper-button></div>
+      <div><paper-button raised on-tap="{{clickNext}}">next</paper-button></div>
     </div>
     <table>
       <thead>

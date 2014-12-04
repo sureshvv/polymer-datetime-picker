@@ -37,7 +37,6 @@ Polymer "time-picker",
     @fireNewTimeString()
 
   attached: ->
-    console.log 'attached'
     @fire('calendar-shown', false)
 
   fireNewTimeString: ->

@@ -20,14 +20,8 @@ getMonthName = (date) -> monthNames[date.getMonth()]
 Polymer "calendar-picker",
   onCurrentMonth: true
 
-  observe: {
+  observe:
     selectedDate: 'selectedDateChanged'
-  }
-
-  # fix for rendering issue on FF/Safari
-  instanceTemplate: (template) ->
-    HTMLTemplateElement.decorate(template)
-    @super(arguments)
 
   ready: ->
     @date =  new Date()

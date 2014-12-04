@@ -1,15 +1,8 @@
-<link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../calendar-picker/calendar-picker.html">
-<link rel="import" href="../time-picker/time-picker.html">
-<link rel="import" href="../../core-input/core-input.html">
-<link rel="import" href="../../paper-button/paper-button.html">
-<link rel="import" href="../../paper-ripple/paper-ripple.html">
-
-<polymer-element name="picker-popup" attributes='selectedDate inputTop inputLeft'>
+<polymer-element name="picker-popup" attributes='selectedDate inputTop inputLeft' extends='core-dropdown'>
   <template>
     <link href="picker-popup.css" rel="stylesheet">
 
-    <div vertical layout style='height:100%'>
+    <div vertical layout id='top'>
       <div flex on-calendar-shown='{{showCalendarChanged}}'>
         <calendar-picker id='calendar' 
           selectedDate='{{selectedDate}}'
@@ -25,7 +18,8 @@
       <div>
         <div horizontal layout center-justified style='padding-top:10px'>
           <div>
-            <paper-button raisedButton on-tap="{{toggleShowCalendar}}" label="{{bottomLabel}}" tabindex='0'>
+            <paper-button raised on-tap="{{toggleShowCalendar}}" tabindex='0'>
+              {{bottomLabel}}
             </paper-button>
           </div>
         </div>

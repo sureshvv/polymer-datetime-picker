@@ -1,0 +1,29 @@
+<polymer-element name="time-picker" attributes="date">
+  <template>
+    <link href="time-picker.css" rel="stylesheet">
+
+    <div vertical layout>
+      <br/>
+      <div center horizontal layout>
+        <div>Hours</div>
+        <paper-slider id='hours' on-trackx='{{hoursChanged}}' max="12" min="1">
+        </paper-slider>
+      </div>
+
+      <div center horizontal layout>
+        <div>Minutes</div>
+        <paper-slider id='minutes' on-trackx='{{minChanged}}' max="59" min="1">
+        </paper-slider>
+      </div>
+
+      <div>
+        <div horizontal layout center-justified>
+          <paper-button raised on-tap='{{toggleAmPm}}'>{{ampm}}</paper-button>
+        </div>
+      </div>
+    </div>
+
+  </template>
+
+  <script type="text/javascript" src='time-picker.js'></script>
+</polymer-element>

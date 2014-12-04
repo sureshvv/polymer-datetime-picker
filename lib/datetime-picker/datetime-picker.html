@@ -1,0 +1,19 @@
+<polymer-element name="datetime-picker" attributes='label'>
+  <template>
+    <link href="datetime-picker.css" rel="stylesheet">
+
+    <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
+    </paper-input>
+
+    <picker-popup id='popup'
+      selectedDate='{{selectedDate}}'
+      on-window-resized='{{updateTopLeft}}'
+      selectedDate='{{selectedDate}}'
+      inputTop='{{inputTop}}' inputLeft='{{inputLeft}}'
+      on-new-date-str='{{setDateStr}}'
+      on-new-time-str='{{setTimeStr}}'>
+    </picker-popup>
+  </template>
+
+  <script type="text/javascript" src='datetime-picker.js'></script>
+</polymer-element>

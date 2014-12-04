@@ -1,40 +1,38 @@
 module.exports = function(grunt) {
     grunt.initConfig({
-        compass: {
-            options: {
-                config: "config.rb"
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    src: ['{,*/}*.scss'],
-                    ext: '.css'
-                }]
-            }
-        },
-
         coffee: {
           dist: {
             files: [{
               expand: true,
-              src: '{,*/}*.{coffee,litcoffee,coffee.md}',
+              cwd: 'lib',
+              src: '**/*.{coffee,litcoffee,coffee.md}',
+              dest: 'lib',
               ext: '.js'
             }]
-         }
+          }
         },
 
-        // qunit: {
-        //     all: ['test/runner.html']
-        // },
+        sass: {
+          dist: {
+            options: {
+              sourcemap: 'none'
+            },
+            files: [{
+              expand: true,
+              src: ['lib/**/*.scss'],
+              ext: '.css'
+            }]
+          }
+        },
 
         watch: {
-          compass: {
-            files: ['{,*/}*.scss'],
-            tasks: ['compass']
+          sass: {
+            files: ['lib/**/*.scss'],
+            tasks: ['sass']
           },
           coffee: {
-              files: ['{,*/}*.{coffee,litcoffee,coffee.md}'],
-              tasks: ['coffee:dist']
+            files: ['lib/**/*.{coffee,litcoffee,coffee.md}'],
+            tasks: ['coffee:dist']
           }
         },
 
@@ -54,20 +52,22 @@ module.exports = function(grunt) {
 
         vulcanize: {
           default: {
+
             options: {
-              inline: true
+              csp: true,
+              inline: true,
+              strip: true
             },
             files: {
-              'index.html': 'demo2.html'
+              'dist/index.html': 'demo.html'
             }
           }
         }
     });
 
     grunt.loadNpmTasks('grunt-vulcanize');
-    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-coffee');
-    // grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
 

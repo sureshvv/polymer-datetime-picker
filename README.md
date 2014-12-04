@@ -24,7 +24,7 @@ Compiling scss/coffee:
 
 To vulcanize for demo purposes:
 
-    vulcanize -o dist/index.html demo.html --inline
+    grunt vulcanize
 
 Deploy to GitHub Pages
     

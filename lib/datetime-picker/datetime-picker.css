@@ -1,0 +1,6 @@
+#input {
+  width: 300px; }
+
+core-input {
+  border: 1px dotted black;
+  padding: 3px; }
