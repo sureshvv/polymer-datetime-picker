@@ -6,16 +6,10 @@ Polymer "picker-popup",
     showCalendar: 'showCalendarChanged'
 
   ready: ->
-    @super()
     @addListeners()
     @setupSizing()
 
-  open: ->
-    @super()
-    @async ->
-      @checkTopLeft()
   detached: ->
-    @super()
     @removeListeners()
 
   checkTopLeft: ->
@@ -36,13 +30,16 @@ Polymer "picker-popup",
       width = window.innerWidth
       if width < 400
         @isMobile = true
-        width = width - 20 + 'px'
+        width = '100%'
+        padding = '10px 0'
       else
         @isMobile = false
         width = 'auto'
+        padding = '10px'
 
       @checkTopLeft()
       @style.width = width
+      @style.padding = padding
 
     @onresize()
 

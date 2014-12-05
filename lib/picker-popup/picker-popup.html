@@ -1,6 +1,8 @@
-<polymer-element name="picker-popup" attributes='selectedDate inputTop inputLeft' extends='core-dropdown'>
+<polymer-element name="picker-popup" attributes='selectedDate inputTop inputLeft'>
   <template>
     <link href="picker-popup.css" rel="stylesheet">
+
+    <local-click-detector></local-click-detector>
 
     <div vertical layout id='top'>
       <div flex on-calendar-shown='{{showCalendarChanged}}'>

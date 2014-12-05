@@ -3,16 +3,19 @@
     <link href="datetime-picker.css" rel="stylesheet">
 
     <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
+      <local-click-detector></local-click-detector>
     </paper-input>
 
-    <picker-popup id='popup'
-      selectedDate='{{selectedDate}}'
-      on-window-resized='{{updateTopLeft}}'
-      selectedDate='{{selectedDate}}'
-      inputTop='{{inputTop}}' inputLeft='{{inputLeft}}'
-      on-new-date-str='{{setDateStr}}'
-      on-new-time-str='{{setTimeStr}}'>
-    </picker-popup>
+    <template if='{{showPicker}}'>
+      <picker-popup id='popup'
+        selectedDate='{{selectedDate}}'
+        on-window-resized='{{updateTopLeft}}'
+        selectedDate='{{selectedDate}}'
+        inputTop='{{inputTop}}' inputLeft='{{inputLeft}}'
+        on-new-date-str='{{setDateStr}}'
+        on-new-time-str='{{setTimeStr}}'>
+      </picker-popup>
+    </template>
   </template>
 
   <script type="text/javascript" src='datetime-picker.js'></script>
