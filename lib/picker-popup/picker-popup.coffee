@@ -7,18 +7,21 @@ Polymer "picker-popup",
 
   ready: ->
     @addListeners()
+
+  attached: ->
     @setupSizing()
 
   detached: ->
     @removeListeners()
 
   checkTopLeft: ->
-    top = @inputTop
+    picker = @parentNode.host
+    top = picker.offsetTop
 
     if @isMobile
       left = 0
     else
-      left = @inputLeft
+      left = picker.offsetLeft
 
     num = if bowser.webkit then 65 else 30
 

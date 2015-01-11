@@ -6,8 +6,6 @@ Polymer "datetime-picker",
     dateString: 'setFullStr'
 
   ready: ->
-    @updateTopLeft()
-
     listenEvent = if bowser.ios then 'touchstart' else 'click'
 
     @handleClick = =>
@@ -27,10 +25,6 @@ Polymer "datetime-picker",
 
   detached: ->
     document.removeEventListener @
-
-  updateTopLeft: ->
-    @inputTop = @offsetTop
-    @inputLeft = @offsetLeft
 
   setDateStr: (e, str, sender) -> @dateString = str
 
