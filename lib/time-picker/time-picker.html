@@ -1,18 +1,27 @@
 <polymer-element name="time-picker" attributes="date">
   <template>
+    <style>
+        paper-button.closer {
+            margin-top: 0px;
+            float:right;
+        }
+    </style>
     <link href="time-picker.css" rel="stylesheet">
 
     <div vertical layout>
+      <div><paper-button raised on-tap="{{closePopup}}" class="closer">Close
+           </paper-button>
+      </div>
       <br/>
       <div center horizontal layout>
         <div>Hours</div>
-        <paper-slider id='hours' on-trackx='{{hoursChanged}}' max="12" min="1">
+        <paper-slider id='hours' on-change='{{hoursChanged}}' max="12" min="1">
         </paper-slider>
       </div>
 
       <div center horizontal layout>
         <div>Minutes</div>
-        <paper-slider id='minutes' on-trackx='{{minChanged}}' max="59" min="1">
+        <paper-slider id='minutes' on-change='{{minChanged}}' max="59" min="1">
         </paper-slider>
       </div>
 

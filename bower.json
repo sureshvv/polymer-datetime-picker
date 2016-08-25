@@ -5,9 +5,10 @@
   "main": "datetime-picker.html",
   "dependencies": {
     "core-elements": "Polymer/core-elements#^0.5.1",
-    "local-click-detector":"shmay/local-click-detector",
+    "local-click-detector": "shmay/local-click-detector",
     "paper-elements": "Polymer/paper-elements#^0.5.1",
     "polymer": "Polymer/polymer#^0.5.1",
-    "bowser": "ded/bowser"
+    "bowser": "^1.4.4",
+    "paper-icon-button": "^1.1.2"
   }
 }

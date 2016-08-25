@@ -2,11 +2,12 @@
   <template>
     <link href="datetime-picker.css" rel="stylesheet">
 
-    <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" label='{{label}}' value="{{fullStr}}">
+    <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" on-close-popup='{{closePopup}}'
+         label='{{label}}' value="{{fullStr}}">
       <local-click-detector></local-click-detector>
     </paper-input>
 
-    <template if='{{showPicker}}'>
+    <template if="{{showPicker}}">
       <picker-popup id='popup'
         selectedDate='{{selectedDate}}'
         on-window-resized='{{updateTopLeft}}'
