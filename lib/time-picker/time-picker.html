@@ -1,33 +1,73 @@
 <polymer-element name="time-picker" attributes="date">
   <template>
     <style>
-        paper-button.closer {
+        paper-icon-button.closer {
             margin-top: 0px;
             float:right;
+        }
+        div.timer {
+            margin: auto;
+        }
+        td.hours {
+            text-align: center;
+        }
+        td.mins {
+            text-align: center;
+        }
+        td.sep {
+            text-align: center;
         }
     </style>
     <link href="time-picker.css" rel="stylesheet">
 
     <div vertical layout>
-      <div><paper-button raised on-tap="{{closePopup}}" class="closer">Close
-           </paper-button>
+      <div>
+           <paper-icon-button class="closer" on-tap="{{closePopup}}" icon="icons:cancel"></paper-icon-button>
       </div>
       <br/>
       <div center horizontal layout>
-        <div>Hours</div>
-        <paper-slider id='hours' on-change='{{hoursChanged}}' max="12" min="1">
-        </paper-slider>
+        <div class="timer">
+            <table>
+              <tr>
+                <td>
+                  <paper-icon-button on-tap="{{incrHours}}" icon="icons:arrow-drop-up"></paper-icon-button>
+                </td>
+                <td></td>
+                <td>
+                  <paper-icon-button on-tap="{{incrMins}}" icon="icons:arrow-drop-up"></paper-icon-button>
+                </td>
+                <td>
+                  <paper-radio-button id="amradio" checked on-tap="{{setAM}}"></paper-radio-button>&nbsp;AM
+                </td>
+              </tr>
+              <tr>
+                <td class="hours">
+                    <div id="hours">9</div>
+                </td>
+                <td class="sep">:
+                </td>
+                <td class="mins">
+                    <div id="mins">00</div>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <paper-icon-button on-tap="{{decrHours}}" icon="icons:arrow-drop-down"></paper-icon-button>
+                </td>
+                <td></td>
+                <td>
+                  <paper-icon-button on-tap="{{decrMins}}" icon="icons:arrow-drop-down"></paper-icon-button>
+                </td>
+                <td>
+                  <paper-radio-button id="pmradio" on-tap="{{setPM}}"></paper-radio-button>&nbsp;PM
+                </td>
+              </tr>
+            </table>
+        </div>
       </div>
-
-      <div center horizontal layout>
-        <div>Minutes</div>
-        <paper-slider id='minutes' on-change='{{minChanged}}' max="59" min="1">
-        </paper-slider>
-      </div>
-
       <div>
         <div horizontal layout center-justified>
-          <paper-button raised on-tap='{{toggleAmPm}}'>{{ampm}}</paper-button>
         </div>
       </div>
     </div>
