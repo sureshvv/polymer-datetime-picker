@@ -1,6 +1,29 @@
-<polymer-element name="time-picker" attributes="date">
-  <template>
-    <style>
+  <!--
+      TODO(polyup): unable to infer path to components
+      directory. This import path is probably incomplete.
+   -->
+<dom-module id="time-picker">
+  <style>
+    /* TODO(polyup): For speed, consider reworking these styles with .classes
+                     and #ids rather than [attributes].
+    */
+    [layout] {
+      @apply(--layout);
+    }
+    [layout][vertical] {
+      @apply(--layout-vertical);
+    }
+    [layout][horizontal] {
+      @apply(--layout-horizontal);
+    }
+    [layout][center] {
+      @apply(--layout-center);
+    }
+    [layout][center-justified] {
+      @apply(--layout-center-justified);
+    }
+  </style>
+  <style>
         paper-icon-button.closer {
             margin-top: 0px;
             float:right;
@@ -18,26 +41,27 @@
             text-align: center;
         }
     </style>
-    <link href="time-picker.css" rel="stylesheet">
+  <link rel="import" type="css" href="time-picker.css">
+  <template>
 
-    <div vertical layout>
+    <div vertical="" layout="">
       <div>
-           <paper-icon-button class="closer" on-tap="{{closePopup}}" icon="icons:cancel"></paper-icon-button>
+           <paper-icon-button class="closer" on-tap="closePopup" icon="icons:cancel"></paper-icon-button>
       </div>
-      <br/>
-      <div center horizontal layout>
+      <br>
+      <div center="" horizontal="" layout="">
         <div class="timer">
             <table>
-              <tr>
+              <tbody><tr>
                 <td>
-                  <paper-icon-button on-tap="{{incrHours}}" icon="icons:arrow-drop-up"></paper-icon-button>
+                  <paper-icon-button on-tap="incrHours" icon="icons:arrow-drop-up"></paper-icon-button>
                 </td>
                 <td></td>
                 <td>
-                  <paper-icon-button on-tap="{{incrMins}}" icon="icons:arrow-drop-up"></paper-icon-button>
+                  <paper-icon-button on-tap="incrMins" icon="icons:arrow-drop-up"></paper-icon-button>
                 </td>
                 <td>
-                  <paper-radio-button id="amradio" checked on-tap="{{setAM}}"></paper-radio-button>&nbsp;AM
+                  <paper-radio-button id="amradio" checked="" on-tap="setAM"></paper-radio-button>&nbsp;AM
                 </td>
               </tr>
               <tr>
@@ -53,26 +77,25 @@
               </tr>
               <tr>
                 <td>
-                  <paper-icon-button on-tap="{{decrHours}}" icon="icons:arrow-drop-down"></paper-icon-button>
+                  <paper-icon-button on-tap="decrHours" icon="icons:arrow-drop-down"></paper-icon-button>
                 </td>
                 <td></td>
                 <td>
-                  <paper-icon-button on-tap="{{decrMins}}" icon="icons:arrow-drop-down"></paper-icon-button>
+                  <paper-icon-button on-tap="decrMins" icon="icons:arrow-drop-down"></paper-icon-button>
                 </td>
                 <td>
-                  <paper-radio-button id="pmradio" on-tap="{{setPM}}"></paper-radio-button>&nbsp;PM
+                  <paper-radio-button id="pmradio" on-tap="setPM"></paper-radio-button>&nbsp;PM
                 </td>
               </tr>
-            </table>
+            </tbody></table>
         </div>
       </div>
       <div>
-        <div horizontal layout center-justified>
+        <div horizontal="" layout="" center-justified="">
         </div>
       </div>
     </div>
 
   </template>
-
-  <script type="text/javascript" src='time-picker.js'></script>
-</polymer-element>
+  <script type="text/javascript" src="time-picker.js"></script>
+</dom-module>

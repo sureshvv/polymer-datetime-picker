@@ -1,32 +1,47 @@
-<polymer-element name="picker-popup" attributes='selectedDate'>
+  <!--
+      TODO(polyup): unable to infer path to components
+      directory. This import path is probably incomplete.
+   -->
+<dom-module id="picker-popup">
+  <style>
+    /* TODO(polyup): For speed, consider reworking these styles with .classes
+                     and #ids rather than [attributes].
+    */
+    [layout] {
+      @apply(--layout);
+    }
+    [layout][vertical] {
+      @apply(--layout-vertical);
+    }
+    [layout][horizontal] {
+      @apply(--layout-horizontal);
+    }
+    [layout][center-justified] {
+      @apply(--layout-center-justified);
+    }
+  </style>
+  <link rel="import" type="css" href="picker-popup.css">
   <template>
-    <link href="picker-popup.css" rel="stylesheet">
 
-    <local-click-detector></local-click-detector>
+    <!-- local-click-detector></local-click-detector -->
 
-    <div vertical layout id='top'>
-      <div flex on-calendar-shown='{{showCalendarChanged}}'>
-        <calendar-picker id='calendar' 
-          selectedDate='{{selectedDate}}'
-          on-new-date-str='{{setDateStr}}'
-          hidden?='{{!showCalendar}}'>
+    <div vertical="" layout="" id="top">
+      <div flex="" on-calendar-shown="showCalendarChanged">
+        <calendar-picker id="calendar" selecteddate="{{selectedDate}}" on-new-date-str="setDateStr" hidden$="{{!showCalendar}}">
         </calendar-picker>
-        <time-picker 
-          selectedDate='{{selectedDate}}'
-          on-new-time-str='{{setTimeStr}}'
-          hidden?='{{showCalendar}}'>
+        <time-picker selecteddate="{{selectedDate}}" on-new-time-str="setTimeStr" hidden$="{{showCalendar}}">
         </time-picker>
       </div>
       <div>
-        <div horizontal layout center-justified style='padding-top:10px'>
+        <div horizontal="" layout="" center-justified="" style="padding-top:10px">
           <div>
-            <paper-button raised on-tap="{{toggleShowCalendar}}" tabindex='0'>
-              {{bottomLabel}}
+            <paper-button raised="" on-tap="toggleShowCalendar" tabindex="0">
+              <span>{{bottomLabel}}</span>
             </paper-button>
           </div>
         </div>
       </div>
     </div>
   </template>
-  <script type="text/javascript" src='picker-popup.js'></script>
-</polymer-element>
+  <script type="text/javascript" src="picker-popup.js"></script>
+</dom-module>

@@ -1,35 +1,63 @@
-<polymer-element name="calendar-picker" attributes="selectedDate" on-picker-shown='{{pickerShown}}'>
+  <!--
+      TODO(polyup): unable to infer path to components
+      directory. This import path is probably incomplete.
+   -->
+<dom-module id="calendar-picker">
+  <style>
+    /* TODO(polyup): For speed, consider reworking these styles with .classes
+                     and #ids rather than [attributes].
+    */
+    [layout] {
+      @apply(--layout);
+    }
+    [layout][horizontal] {
+      @apply(--layout-horizontal);
+    }
+    [layout][justified] {
+      @apply(--layout-justified);
+    }
+    [layout][vertical] {
+      @apply(--layout-vertical);
+    }
+    [layout][center-justified] {
+      @apply(--layout-center-justified);
+    }
+  </style>
+  <link rel="import" type="css" href="calendar-picker.css">
   <template>
-    <link href="calendar-picker.css" rel="stylesheet">
 
-    <div layout horizontal justified>
-      <div><paper-button raised on-tap="{{clickPrevious}}" tabindex='0'
-        disabled?="{{onCurrentMonth}}">prev</paper-button>
+    <div layout="" horizontal="" justified="">
+      <div><paper-button raised="" on-tap="clickPrevious" tabindex="0" disabled$="{{onCurrentMonth}}">prev</paper-button>
       </div>
-      <div layout vertical center-justified>{{shownMonthName}} {{shownYear}}</div>
-      <div><paper-button raised on-tap="{{clickNext}}">next</paper-button></div>
+      <div layout="" vertical="" center-justified=""><span>{{shownMonthName}}</span> <span>{{shownYear}}</span></div>
+      <div><paper-button raised="" on-tap="clickNext">next</paper-button></div>
     </div>
+    <div>
     <table>
       <thead>
-        <th>Sun</th>
+        <tr><th>Sun</th>
         <th>Mon</th>
         <th>Tue</th>
         <th>Wed</th>
         <th>Thu</th>
         <th>Fri</th>
         <th>Sat</th>
-      </thead>
+      </tr></thead>
       <tbody>
-        <tr template repeat="{{week in weeks}}">
-          <td template repeat="{{day in week}}">
-            <div on-tap="{{clickDay}}" class="td {{day <= 0 ? 'dead-date' : ''}} {{day == selectedDay && shownMonth === selectedMonth ? 'selected' : ''}} {{onCurrentMonth && day < currentDay ? 'dead-date' : '' }} {{onCurrentMonth && day == currentDay ? 'current-day' : ''}}" day="{{day}}">
-              <span hidden?="{{day <= 0}}">{{day}}</span>
+        <template is="dom-repeat" items="{{weeks}}" as="week">
+          <tr>
+          <template is="dom-repeat" items="{{week}}" as="day">
+            <td>
+            <div on-tap="clickDay" day="{{day}}" class$="{{_computeClass(currentDay, day, onCurrentMonth, selectedDay, selectedMonth, shownMonth)}}">
+              <span hidden$="{{_computeHidden(day)}}">{{day}}</span>
             </div>
-          </td>
-        </tr>
+            </td>
+          </template>
+          </tr>
+        </template>
       </tbody>
     </table>
+    <div>
   </template>
-
-  <script type="text/javascript" src='calendar-picker.js'></script>
-</polymer-element>
+  <script type="text/javascript" src="calendar-picker.js"></script>
+</dom-module>

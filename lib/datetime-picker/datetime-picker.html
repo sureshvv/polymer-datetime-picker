@@ -1,22 +1,15 @@
-<polymer-element name="datetime-picker" attributes='label'>
+<dom-module id="datetime-picker">
+  <link rel="import" type="css" href="datetime-picker.css">
   <template>
-    <link href="datetime-picker.css" rel="stylesheet">
 
-    <paper-input id='input' readonly floatinglabel on-tap="{{selectInput}}" on-close-popup='{{closePopup}}'
-         label='{{label}}' value="{{fullStr}}">
-      <local-click-detector></local-click-detector>
+    <paper-input id="input" readonly="" always-float-label="" on-tap="selectInput" label="{{label}}" value="[[fullStr]]">
+      <!-- on-new-date-str="setDateStr" on-close-popup="closePopup" local-click-detector></local-click-detector -->
     </paper-input>
 
-    <template if="{{showPicker}}">
-      <picker-popup id='popup'
-        selectedDate='{{selectedDate}}'
-        on-window-resized='{{updateTopLeft}}'
-        selectedDate='{{selectedDate}}'
-        on-new-date-str='{{setDateStr}}'
-        on-new-time-str='{{setTimeStr}}'>
+    <template is="dom-if" if="{{showPicker}}">
+      <picker-popup id="popup" selecteddate="{{selectedDate}}" on-window-resized="updateTopLeft" on-new-time-str="setTimeStr">
       </picker-popup>
     </template>
   </template>
-
-  <script type="text/javascript" src='datetime-picker.js'></script>
-</polymer-element>
+  <script type="text/javascript" src="datetime-picker.js"></script>
+</dom-module>

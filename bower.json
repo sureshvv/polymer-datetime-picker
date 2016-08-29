@@ -1,16 +1,30 @@
 {
   "name": "datetime-picker",
   "version": "0.0.2",
-  "keywords": "seed, polymer, web-components",
+  "keywords": [
+    "seed",
+    "polymer",
+    "web-components"
+  ],
   "main": "datetime-picker.html",
   "dependencies": {
-    "core-elements": "Polymer/core-elements#^0.5.1",
-    "local-click-detector": "shmay/local-click-detector",
-    "paper-elements": "Polymer/paper-elements#^0.5.1",
-    "polymer": "Polymer/polymer#^0.5.1",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+    "polymer": "Polymer/polymer#^1.6.1",
     "bowser": "^1.4.4",
     "paper-icon-button": "^1.1.2",
     "iron-icons": "^1.1.3",
-    "paper-radio-button": "PolymerElements/paper-radio-button#^1.2.1"
-  }
+    "paper-radio-button": "PolymerElements/paper-radio-button#^1.2.1",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.10"
+  },
+  "homepage": "https://github.com/sureshvv/polymer-datetime-picker",
+  "description": "datetime",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }

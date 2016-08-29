@@ -8,44 +8,48 @@ core-input {
 paper-button /deep/ paper-ripple {
   color: #3f51b5 !important; }
 
-div.td {
+td {
   border-radius: 4px;
   -webkit-tap-highlight-color: transparent;
-  padding: 14px;
+  padding: 8px;
   text-align: center;
   cursor: pointer; }
-  div.td.dead-date {
+
+td div.dead-date {
     cursor: default;
     color: gray; }
-    div.td.dead-date:hover {
+
+td div.dead-date:hover {
       background-color: white;
       color: gray; }
-  div.td.current-day {
+
+td div.current-day {
     background-color: #e1e1e1; }
-  @media (min-width: 400px) {
-    div.td:hover {
-      background-color: #03a9f4;
+
+@media (min-width: 400px) {
+    td:hover {
+      background-color: white;
       color: white; } }
-  div.td.selected {
+  td div.selected {
     background-color: #03a9f4;
     cursor: default;
     color: white; }
 
 @media (max-width: 400px) {
-  div.td {
-    padding: 16px; } }
+  td {
+    padding: 8px; } }
 @media (max-width: 370px) {
-  div.td {
-    padding: 14px; } }
+  td {
+    padding: 8px; } }
 @media (max-width: 335px) {
-  div.td {
-    padding: 12px; } }
+  td {
+    padding: 8px; } }
 @media (max-width: 310px) {
-  div.td {
-    padding: 10px; } }
+  td {
+    padding: 8px; } }
 @media (max-width: 285px) {
-  div.td {
-    padding: 7px; } }
+  td {
+    padding: 8px; } }
 @media (max-width: 250px) {
-  div.td {
+  td {
     padding: 3px; } }
